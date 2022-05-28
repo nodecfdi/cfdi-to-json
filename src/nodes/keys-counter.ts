@@ -1,12 +1,12 @@
 export class KeysCounter {
-	private counts: Record<string, number> = {};
+	private _counts: Record<string, number> = {};
 
 	public register(key: string): void {
-		this.counts[key] = this.get(key) + 1;
+		this._counts[key] = this.get(key) + 1;
 	}
 
 	public get(key: string): number {
-		return this.counts[key] || 0;
+		return this._counts[key] || 0;
 	}
 
 	public hasMany(key: string): boolean {

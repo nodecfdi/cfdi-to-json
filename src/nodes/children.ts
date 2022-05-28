@@ -3,30 +3,30 @@ import { KeysCounter } from './keys-counter';
 import { Node, SafeNestedMap } from './node';
 
 export class Children {
-	private children: Node[] = [];
+	private _children: Node[] = [];
 
-	private unboundedOccursPaths: UnboundedOccursPaths;
+	private _unboundedOccursPaths: UnboundedOccursPaths;
 
-	private keysCounter: KeysCounter;
+	private _keysCounter: KeysCounter;
 
 	constructor(unboundedOccursPaths: UnboundedOccursPaths) {
-		this.unboundedOccursPaths = unboundedOccursPaths;
-		this.keysCounter = new KeysCounter();
+		this._unboundedOccursPaths = unboundedOccursPaths;
+		this._keysCounter = new KeysCounter();
 	}
 
 	public append(child: Node): void {
-		this.children.push(child);
-		this.keysCounter.register(child.getKey());
+		this._children.push(child);
+		this._keysCounter.register(child.getKey());
 	}
 
 	public isChildrenMultiple(child: Node): boolean {
-		return this.keysCounter.hasMany(child.getKey()) || this.unboundedOccursPaths.match(child.getPath());
+		return this._keysCounter.hasMany(child.getKey()) || this._unboundedOccursPaths.match(child.getPath());
 	}
 
 	public toMap(): SafeNestedMap {
 		const children: SafeNestedMap = new Map();
 
-		for (const item of Array.from(this.children)) {
+		for (const item of Array.from(this._children)) {
 			if (this.isChildrenMultiple(item)) {
 				if (!children.has(item.getKey()) || !Array.isArray(children.get(item.getKey()))) {
 					children.set(item.getKey(), []);
