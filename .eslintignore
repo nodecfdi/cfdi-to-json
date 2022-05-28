@@ -1,0 +1,4 @@
+/dist
+web_modules
+.prettierrc.cjs
+tsconfig.json
