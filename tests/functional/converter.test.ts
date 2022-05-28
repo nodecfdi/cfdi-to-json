@@ -10,7 +10,7 @@ interface ImpuestosLocales extends SafeNestedRecord {
 
 interface TestData extends SafeNestedRecord {
 	Version: string;
-	Subtotal: string;
+	SubTotal: string;
 	Emisor: Record<string, string>;
 	Conceptos: {
 		Concepto: SafeNestedRecord[];
@@ -34,7 +34,7 @@ describe('Converter', () => {
 
 	test('convert export attributes from root node', () => {
 		expect(data.Version).toBe('3.3');
-		expect(data.Subtotal).toBe('1709.12');
+		expect(data.SubTotal).toBe('1709.12');
 		expect(data).toHaveProperty('xsi:schemaLocation');
 	});
 

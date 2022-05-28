@@ -6,10 +6,7 @@ module.exports = {
 	moduleNameMapper: {
 		'~/(.*)': '<rootDir>/src/$1'
 	},
-	watchPlugins: [
-		'jest-watch-typeahead/filename',
-		'jest-watch-typeahead/testname'
-	],
+	watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 	globals: {
 		__DEV__: false, //toggle to true to execute the code in __DEV__ scope
 		__VERSION__: 'jest-version',
@@ -20,6 +17,7 @@ module.exports = {
 		'<rootDir>/src/**',
 		'!<rootDir>/src/index.ts',
 		'!<rootDir>/src/types.ts',
+		'!<rootDir>/src/**.json',
 		'!<rootDir>/src/**.d.ts',
 		'!<rootDir>/tests/**',
 		'!<rootDir>/tests/__fixtures__/**'
