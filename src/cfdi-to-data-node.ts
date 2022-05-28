@@ -33,7 +33,7 @@ export class CfdiToDataNode {
 
 		// children to internal struct
 		const convertionChildren = new Children(this._unboundedOccursPaths);
-		for (const childElement of element.childNodes) {
+		for (const childElement of Array.from(element.childNodes)) {
 			if (childElement.nodeType === childElement.ELEMENT_NODE) {
 				convertionChildren.append(this.convertElementToDataNode(childElement as Element));
 			}
@@ -43,7 +43,7 @@ export class CfdiToDataNode {
 	}
 
 	private obtainAttributes(element: Element): Record<string, string> {
-		const elementAttributes = element.attributes;
+		const elementAttributes = Array.from(element.attributes);
 
 		const attributes: Record<string, string> = {};
 		for (const attribute of elementAttributes) {
@@ -57,7 +57,7 @@ export class CfdiToDataNode {
 		const namespace = element.namespaceURI || '';
 		const parentsStack: string[] = [];
 
-		for (let current: Element | null = element; current !== null; current = current.parentElement) {
+		for (let current: Element | null = element; null !== current; current = current.parentNode as Element) {
 			if (namespace !== current.namespaceURI) {
 				break;
 			}

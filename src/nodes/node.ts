@@ -1,6 +1,6 @@
 import { Children } from './children';
 
-export type SafeNestedMap = Map<string, string | SafeNestedMap | SafeNestedMap[]>;
+export interface SafeNestedRecord extends Record<string, string | SafeNestedRecord | SafeNestedRecord[]> {}
 
 export class Node {
 	private _key: string;
@@ -9,12 +9,12 @@ export class Node {
 
 	private _children: Children;
 
-	private _attributes: Map<string, string>;
+	private _attributes: Record<string, string>;
 
 	constructor(key: string, path: string, attributes: Record<string, string>, children: Children) {
 		this._key = key;
 		this._path = path;
-		this._attributes = new Map(Object.entries(attributes));
+		this._attributes = attributes;
 		this._children = children;
 	}
 
@@ -26,10 +26,7 @@ export class Node {
 		return this._path;
 	}
 
-	public toMap(): SafeNestedMap {
-		return new Map([
-			...Object.entries(this._attributes.entries()),
-			...Object.entries(this._children.toMap().entries())
-		]);
+	public toRecord(): SafeNestedRecord {
+		return { ...this._attributes, ...this._children.toRecord() };
 	}
 }

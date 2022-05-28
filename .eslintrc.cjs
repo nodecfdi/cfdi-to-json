@@ -12,17 +12,8 @@ module.exports = {
 		__COMMIT_SHA__: true,
 		__BUILD_DATE__: true
 	},
-	plugins: [
-		'@typescript-eslint/eslint-plugin',
-		'eslint-plugin-tsdoc',
-		'prettier'
-	],
-	extends: [
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:jest/recommended',
-		'prettier'
-	],
+	plugins: ['@typescript-eslint/eslint-plugin', 'eslint-plugin-tsdoc', 'prettier'],
+	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:jest/recommended', 'prettier'],
 	parser: '@typescript-eslint/parser',
 	reportUnusedDisableDirectives: true,
 	parserOptions: {
@@ -34,10 +25,7 @@ module.exports = {
 	rules: {
 		'indent': 'off',
 		'tsdoc/syntax': 'warn',
-		'@typescript-eslint/no-unused-vars': [
-			2,
-			{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
-		],
+		'@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
 		'semi': 'error',
 		'quote-props': ['error', 'consistent'],
 		'generator-star-spacing': ['error', { before: false, after: true }],
@@ -47,10 +35,7 @@ module.exports = {
 		'@typescript-eslint/no-useless-constructor': 'off',
 		'prettier/prettier': ['error'],
 		'lines-between-class-members': ['error', 'always'],
-		'padding-line-between-statements': [
-			'error',
-			{ blankLine: 'always', prev: '*', next: 'return' }
-		],
+		'padding-line-between-statements': ['error', { blankLine: 'always', prev: '*', next: 'return' }],
 		'@typescript-eslint/explicit-function-return-type': [
 			'error',
 			{
@@ -79,16 +64,18 @@ module.exports = {
 			'error',
 			{
 				multiline: {
-					delimiter: 'none',
-					requireLast: false
+					delimiter: 'semi',
+					requireLast: true
 				},
 				singleline: {
 					delimiter: 'semi',
 					requireLast: false
-				}
+				},
+				multilineDetection: 'brackets'
 			}
 		],
-		'@typescript-eslint/indent': ['error', 'tab']
+		'@typescript-eslint/indent': ['error', 'tab'],
+		'@typescript-eslint/no-empty-interface': 'off'
 	},
 	overrides: [
 		{

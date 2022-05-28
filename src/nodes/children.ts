@@ -1,6 +1,6 @@
 import { UnboundedOccursPaths } from '../unbounded-occurs-paths';
 import { KeysCounter } from './keys-counter';
-import { Node, SafeNestedMap } from './node';
+import { Node, SafeNestedRecord } from './node';
 
 export class Children {
 	private _children: Node[] = [];
@@ -23,17 +23,17 @@ export class Children {
 		return this._keysCounter.hasMany(child.getKey()) || this._unboundedOccursPaths.match(child.getPath());
 	}
 
-	public toMap(): SafeNestedMap {
-		const children: SafeNestedMap = new Map();
+	public toRecord(): SafeNestedRecord {
+		const children: SafeNestedRecord = {};
 
 		for (const item of Array.from(this._children)) {
 			if (this.isChildrenMultiple(item)) {
-				if (!children.has(item.getKey()) || !Array.isArray(children.get(item.getKey()))) {
-					children.set(item.getKey(), []);
+				if (children[item.getKey()] === undefined || !Array.isArray(children[item.getKey()])) {
+					children[item.getKey()] = [];
 				}
-				(children.get(item.getKey()) as SafeNestedMap[]).push(item.toMap());
+				(children[item.getKey()] as SafeNestedRecord[]).push(item.toRecord());
 			} else {
-				children.set(item.getKey(), item.toMap());
+				children[item.getKey()] = item.toRecord();
 			}
 		}
 
