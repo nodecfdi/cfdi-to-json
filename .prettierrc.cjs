@@ -5,5 +5,6 @@ module.exports = {
 	endOfLine: 'lf',
 	quoteProps: 'consistent',
 	tabWidth: 4,
-	useTabs: true
+	useTabs: true,
+	printWidth: 120
 };
