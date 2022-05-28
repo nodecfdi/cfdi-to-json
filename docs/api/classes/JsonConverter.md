@@ -44,7 +44,7 @@ Json String
 
 #### Defined in
 
-json-converter.ts:14
+[json-converter.ts:14](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/json-converter.ts#L14)
 
 ___
 
@@ -74,4 +74,4 @@ A Object record data
 
 #### Defined in
 
-json-converter.ts:24
+[json-converter.ts:24](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/json-converter.ts#L24)

@@ -40,7 +40,7 @@
 
 #### Defined in
 
-factory.ts:7
+[factory.ts:7](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory.ts#L7)
 
 ## Methods
 
@@ -54,7 +54,7 @@ factory.ts:7
 
 #### Defined in
 
-factory.ts:12
+[factory.ts:12](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory.ts#L12)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-factory.ts:16
+[factory.ts:16](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory.ts#L16)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-factory.ts:20
+[factory.ts:20](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory.ts#L20)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-factory-base.ts:10
+[factory-base.ts:10](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory-base.ts#L10)
 
 ___
 
@@ -130,4 +130,4 @@ ___
 
 #### Defined in
 
-factory-base.ts:6
+[factory-base.ts:6](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory-base.ts#L6)

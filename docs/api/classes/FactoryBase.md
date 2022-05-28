@@ -45,7 +45,7 @@
 
 #### Defined in
 
-factory-base.ts:10
+[factory-base.ts:10](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory-base.ts#L10)
 
 ___
 
@@ -59,4 +59,4 @@ ___
 
 #### Defined in
 
-factory-base.ts:6
+[factory-base.ts:6](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/factory-base.ts#L6)

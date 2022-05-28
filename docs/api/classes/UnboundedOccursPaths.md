@@ -26,7 +26,7 @@
 
 #### Defined in
 
-unbounded-occurs-paths.ts:4
+[unbounded-occurs-paths.ts:4](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/unbounded-occurs-paths.ts#L4)
 
 ## Methods
 
@@ -46,4 +46,4 @@ unbounded-occurs-paths.ts:4
 
 #### Defined in
 
-unbounded-occurs-paths.ts:12
+[unbounded-occurs-paths.ts:12](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/unbounded-occurs-paths.ts#L12)

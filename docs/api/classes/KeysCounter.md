@@ -38,7 +38,7 @@
 
 #### Defined in
 
-nodes/keys-counter.ts:8
+[nodes/keys-counter.ts:8](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/nodes/keys-counter.ts#L8)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-nodes/keys-counter.ts:12
+[nodes/keys-counter.ts:12](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/nodes/keys-counter.ts#L12)
 
 ___
 
@@ -78,4 +78,4 @@ ___
 
 #### Defined in
 
-nodes/keys-counter.ts:4
+[nodes/keys-counter.ts:4](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/nodes/keys-counter.ts#L4)

@@ -28,7 +28,7 @@
 
 #### Defined in
 
-cfdi-to-data-node.ts:9
+[cfdi-to-data-node.ts:9](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/cfdi-to-data-node.ts#L9)
 
 ## Methods
 
@@ -48,7 +48,7 @@ cfdi-to-data-node.ts:9
 
 #### Defined in
 
-cfdi-to-data-node.ts:17
+[cfdi-to-data-node.ts:17](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/cfdi-to-data-node.ts#L17)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-cfdi-to-data-node.ts:23
+[cfdi-to-data-node.ts:23](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/cfdi-to-data-node.ts#L23)
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-cfdi-to-data-node.ts:13
+[cfdi-to-data-node.ts:13](https://github.com/nodecfdi/cfdi-to-json/blob/28507e4/src/cfdi-to-data-node.ts#L13)
