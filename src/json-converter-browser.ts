@@ -1,7 +1,7 @@
-import { Factory } from './factory';
+import { FactoryBrowser } from './factory-browser';
 import { SafeNestedRecord } from './nodes/node';
 
-export class JsonConverter {
+export class JsonConverterBrowser {
 	/**
 	 * Helper function to convert a Cfdi XML contents to JSON string
 	 *
@@ -12,7 +12,7 @@ export class JsonConverter {
 	 *
 	 */
 	public static convertToJson(cfdi: string, space: number | string = 2): string {
-		return JSON.stringify(JsonConverter.convertToRecord(cfdi), null, space);
+		return JSON.stringify(JsonConverterBrowser.convertToRecord(cfdi), null, space);
 	}
 
 	/**
@@ -22,7 +22,7 @@ export class JsonConverter {
 	 * @returns A Object record data
 	 */
 	public static convertToRecord<T extends SafeNestedRecord>(cfdi: string): T {
-		const factory = new Factory();
+		const factory = new FactoryBrowser();
 		const converter = factory.createConverter();
 		const dataNode = converter.convertXmlContent(cfdi);
 

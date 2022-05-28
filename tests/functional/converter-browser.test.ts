@@ -1,5 +1,5 @@
 import { TestCase } from '../test-case';
-import { JsonConverter } from '~/json-converter';
+import { JsonConverterBrowser } from '~/json-converter-browser';
 import { SafeNestedRecord } from '~/nodes/node';
 
 interface ImpuestosLocales extends SafeNestedRecord {
@@ -29,7 +29,7 @@ describe('Converter', () => {
 	beforeEach(() => {
 		const xmlContents = TestCase.fileContents('cfdi-example.xml');
 
-		data = JsonConverter.convertToRecord(xmlContents);
+		data = JsonConverterBrowser.convertToRecord(xmlContents);
 	});
 
 	test('convert export attributes from root node', () => {
@@ -65,7 +65,7 @@ describe('Converter', () => {
 	test('json-converter', () => {
 		const xmlContents = TestCase.fileContents('cfdi-example.xml');
 		const jsonFile = TestCase.fileContents('cfdi-example.json');
-		const json = JsonConverter.convertToJson(xmlContents, '\t');
+		const json = JsonConverterBrowser.convertToJson(xmlContents, '\t');
 		expect(JSON.parse(json)).toStrictEqual(JSON.parse(jsonFile));
 		expect(`${json}\n`).toBe(jsonFile);
 	});
