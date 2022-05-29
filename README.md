@@ -3,6 +3,7 @@
 [![Source Code][badge-source]][source]
 [![Software License][badge-license]][license]
 [![Latest Version][badge-release]][release]
+[![codecov](https://codecov.io/gh/nodecfdi/cfdi-to-json/branch/main/graph/badge.svg?token=C2VSDMGQ6F)](https://codecov.io/gh/nodecfdi/cfdi-to-json)
 
 [source]: https://github.com/nodecfdi/cfdi-to-json
 [badge-source]: https://img.shields.io/badge/source-nodecfdi%2Fcfdi--to--json-blue?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMTIgMTIgNDAgNDAiPjxwYXRoIGZpbGw9IiMzMzMzMzMiIGQ9Ik0zMiwxMy40Yy0xMC41LDAtMTksOC41LTE5LDE5YzAsOC40LDUuNSwxNS41LDEzLDE4YzEsMC4yLDEuMy0wLjQsMS4zLTAuOWMwLTAuNSwwLTEuNywwLTMuMiBjLTUuMywxLjEtNi40LTIuNi02LjQtMi42QzIwLDQxLjYsMTguOCw0MSwxOC44LDQxYy0xLjctMS4yLDAuMS0xLjEsMC4xLTEuMWMxLjksMC4xLDIuOSwyLDIuOSwyYzEuNywyLjksNC41LDIuMSw1LjUsMS42IGMwLjItMS4yLDAuNy0yLjEsMS4yLTIuNmMtNC4yLTAuNS04LjctMi4xLTguNy05LjRjMC0yLjEsMC43LTMuNywyLTUuMWMtMC4yLTAuNS0wLjgtMi40LDAuMi01YzAsMCwxLjYtMC41LDUuMiwyIGMxLjUtMC40LDMuMS0wLjcsNC44LTAuN2MxLjYsMCwzLjMsMC4yLDQuNywwLjdjMy42LTIuNCw1LjItMiw1LjItMmMxLDIuNiwwLjQsNC42LDAuMiw1YzEuMiwxLjMsMiwzLDIsNS4xYzAsNy4zLTQuNSw4LjktOC43LDkuNCBjMC43LDAuNiwxLjMsMS43LDEuMywzLjVjMCwyLjYsMCw0LjYsMCw1LjJjMCwwLjUsMC40LDEuMSwxLjMsMC45YzcuNS0yLjYsMTMtOS43LDEzLTE4LjFDNTEsMjEuOSw0Mi41LDEzLjQsMzIsMTMuNHoiLz48L3N2Zz4%3D
@@ -12,7 +13,8 @@
 [release]: https://www.npmjs.com/package/@nodecfdi/cfdi-to-json
 
 > Library to convert CFDI files to JSON.
-> :us: The documentation of this project is in spanish as this is the natural language for intented audience.
+
+:us: The documentation of this project is in spanish as this is the natural language for intented audience.
 
 :mexico: La documentación del proyecto está en español porque ese es el lenguaje principal de los usuarios.
 
@@ -43,7 +45,7 @@ yarn add @nodecfdi/cfdi-to-json
 
 ## Uso básico
 
-### Convirtiendo de CFDI (string) a JSON (string)
+### Convirtiendo de CFDI (string) a JSON (string) - Node Version
 
 ```ts
 import { readFileSync } from 'fs';
@@ -54,7 +56,7 @@ const json = JsonConverter.convertToJson(xml);
 console.log(json);
 ```
 
-### Convirtiendo de `Document` a `Object`
+### Convirtiendo de `Document` a `Object` - Node Version
 
 ```ts
 import { Factory } from '@nodecfdi/cfdi-to-json';
@@ -62,7 +64,29 @@ import { Factory } from '@nodecfdi/cfdi-to-json';
 const factory = new Factory();
 const dataConverter = factory.createConverter();
 const rootNode = dataConverter.convertXmlDocument(document);
-const myObject = rootNode.toObj();
+const myObject = rootNode.toRecord();
+console.log(myObject);
+```
+
+### Convirtiendo de CFDI (string) a JSON (string) - Browser Version
+
+```ts
+import { JsonConverterBrowser } from '@nodecfdi/cfdi-to-json';
+// Accedemos al contenido en nuestro archivo XML
+const xml = 'nuestro xml string';
+const json = JsonConverterBrowser.convertToJson(xml);
+console.log(json);
+```
+
+### Convirtiendo de `Document` a `Object` - Browser Version
+
+```ts
+import { FactoryBrowser } from '@nodecfdi/cfdi-to-json';
+/** const document: Document **/
+const factory = new FactoryBrowser();
+const dataConverter = factory.createConverter();
+const rootNode = dataConverter.convertXmlDocument(document);
+const myObject = rootNode.toRecord();
 console.log(myObject);
 ```
 
@@ -196,10 +220,10 @@ Note que:
 ## Funcionamiento interno
 
 La conversión parte de un objeto `Document` que es recorrido nodo a nodo y en cada transformación genera
-un objeto de tipo `Nodes\NodeObj` que contiene sus propiedades básicas de nombre, ruta, atributos e hijos.
-Los hijos (`Nodes\Children`) son una colección de nodos `Nodes\NodeObj`.
+un objeto de tipo `Nodes\Node` que contiene sus propiedades básicas de nombre, ruta, atributos e hijos.
+Los hijos (`Nodes\Children`) son una colección de nodos `Nodes\Node`.
 
-Al momento de exportar a un Record<key, value> `Nodes\NodeObj.toObj()` es cuando se resuelve si los nodos deben agregarse como
+Al momento de exportar a un Record<key, value> `Nodes\Node.toRecord()` es cuando se resuelve si los nodos deben agregarse como
 llaves directas a objetos o bien como arreglos de objetos.
 
 ### Elementos con múltiples apariciones
