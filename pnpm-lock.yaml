@@ -26,7 +26,7 @@ specifiers:
   lint-staged: ^12.4.1
   microbundle: ^0.15.0
   prettier: ^2.6.2
-  typedoc: ^0.22.15
+  typedoc: ^0.23.0
   typedoc-plugin-markdown: ^3.12.1
   typescript: ^4.7.2
 
@@ -58,8 +58,8 @@ devDependencies:
   lint-staged: 12.4.2
   microbundle: 0.15.0
   prettier: 2.6.2
-  typedoc: 0.22.15_typescript@4.7.2
-  typedoc-plugin-markdown: 3.12.1_typedoc@0.22.15
+  typedoc: 0.23.5_typescript@4.7.2
+  typedoc-plugin-markdown: 3.12.1_typedoc@0.23.5
   typescript: 4.7.2
 
 packages:
@@ -6741,23 +6741,22 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /typedoc-plugin-markdown/3.12.1_typedoc@0.22.15:
+  /typedoc-plugin-markdown/3.12.1_typedoc@0.23.5:
     resolution: {integrity: sha512-gMntJq7+JlGJZ5sVjrkzO/rG2dsmNBbWk5ZkcKvYu6QOeBwGcK5tzEyS0aqnFTJj9GCHCB+brAnTuKtAyotNwA==}
     peerDependencies:
       typedoc: '>=0.22.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.22.15_typescript@4.7.2
+      typedoc: 0.23.5_typescript@4.7.2
     dev: true
 
-  /typedoc/0.22.15_typescript@4.7.2:
-    resolution: {integrity: sha512-CMd1lrqQbFvbx6S9G6fL4HKp3GoIuhujJReWqlIvSb2T26vGai+8Os3Mde7Pn832pXYemd9BMuuYWhFpL5st0Q==}
-    engines: {node: '>= 12.10.0'}
+  /typedoc/0.23.5_typescript@4.7.2:
+    resolution: {integrity: sha512-5ydWUOe4E9Z3a/r33cC5X5CJPLnFDKIondHYtdnEnO0sa/s8f+Nrfe+LBGOk/UTkV2IPYyL1Gm1PtUKIihklyw==}
+    engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x
+      typescript: 4.6.x || 4.7.x
     dependencies:
-      glob: 7.2.3
       lunr: 2.3.9
       marked: 4.0.16
       minimatch: 5.1.0
