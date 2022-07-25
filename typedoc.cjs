@@ -1,10 +1,10 @@
 module.exports = {
-	theme: 'markdown',
-	readme: 'none',
-	excludePrivate: true,
-	excludeInternal: true,
-	excludeProtected: true,
-	exclude: ['./src/globals.d.ts', './tests'],
-	out: 'docs/api',
-	entryPoints: ['./src/index.ts']
+    entryPoints: ['src'],
+    entryPointStrategy: 'Expand',
+    out: 'docs',
+    plugin: ['typedoc-theme-hierarchy'],
+    theme: 'hierarchy',
+    tsconfig: './tsconfig.json',
+    name: '@nodecfdi/cfdi-to-json',
+    exclude: ['./src/globals.d.ts', './src/__tests__']
 };

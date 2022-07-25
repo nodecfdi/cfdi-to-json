@@ -1,5 +1,8 @@
-/dist
+node_modules
+dist
+docs
+coverage
 web_modules
-.prettierrc.cjs
+.prettierrc.js
 tsconfig.json
 UnboundedOccursPaths.json

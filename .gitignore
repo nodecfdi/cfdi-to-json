@@ -8,6 +8,3 @@ dist/
 scratch
 *.tsbuildinfo
 .pnpm-debug.log
-
-/.vscode/launch.json
-/.idea
