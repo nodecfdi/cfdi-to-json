@@ -4,22 +4,20 @@ import { FactoryBase } from './factory-base';
 import { UnboundedOccursPaths } from './unbounded-occurs-paths';
 
 export class FactoryBrowser extends FactoryBase {
-	constructor(unboundedOccursPaths: UnboundedOccursPaths | null = null) {
-		super();
-		this._unboundedOccursPaths = unboundedOccursPaths || this.createDefaultUnboundedOccursPaths();
-	}
+    constructor(unboundedOccursPaths: UnboundedOccursPaths | null = null) {
+        super();
+        this._unboundedOccursPaths = unboundedOccursPaths || this.createDefaultUnboundedOccursPaths();
+    }
 
-	public createConverter(): CfdiToDataNode {
-		return new CfdiToDataNode(this.getUnboundedOccursPaths());
-	}
+    public createConverter(): CfdiToDataNode {
+        return new CfdiToDataNode(this.getUnboundedOccursPaths());
+    }
 
-	public createDefaultUnboundedOccursPaths(): UnboundedOccursPaths {
-		return this.createUnboundedOccursPathsUsingJsonFile();
-	}
+    public createDefaultUnboundedOccursPaths(): UnboundedOccursPaths {
+        return this.createUnboundedOccursPathsUsingJsonFile();
+    }
 
-	public createUnboundedOccursPathsUsingJsonFile(): UnboundedOccursPaths {
-		const unboundedOccursPaths = this.createUnboundedOccursPathsUsingJsonSource(JSON.stringify(JsonContents));
-
-		return unboundedOccursPaths;
-	}
+    public createUnboundedOccursPathsUsingJsonFile(): UnboundedOccursPaths {
+        return this.createUnboundedOccursPathsUsingJsonSource(JSON.stringify(JsonContents));
+    }
 }
