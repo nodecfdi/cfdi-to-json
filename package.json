@@ -38,7 +38,7 @@
         "build:dev": "cross-env NODE_ENV=development microbundle --define process.env.NODE_ENV=development --tsconfig ./tsconfig.json --generateTypes false --format modern --output dist/dev/cfdi-to-json.js",
         "build": "rm -rf ./dist && pnpm build:dev && pnpm build:prod && pnpm copy",
         "copy": "cp src/UnboundedOccursPaths.json dist/dev/ && cp src/UnboundedOccursPaths.json dist/prod/",
-        "gen:docs": "rm -rf ./docs/api && typedoc --options typedoc.cjs",
+        "gen:docs": "rm -rf ./docs && typedoc --options typedoc.cjs",
         "prepublishOnly": "pnpm build",
         "prepare": "husky install",
         "release": "pnpm run prepublishOnly && pnpm changeset publish"
