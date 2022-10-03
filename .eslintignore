@@ -14,5 +14,6 @@ dist
 /bin
 /coverage
 tests/tsconfig.json
+tests/_files
 /examples
 UnboundedOccursPaths.json

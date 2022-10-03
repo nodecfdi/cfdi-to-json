@@ -30,6 +30,7 @@ export class CfdiToDataNode {
 
     private convertElementToDataNode(element: Element): Node {
         const path = this.buildPathForElement(element);
+        const value = this.extractValue(element);
 
         // children to internal struct
         const convertionChildren = new Children(this._unboundedOccursPaths);
@@ -39,7 +40,7 @@ export class CfdiToDataNode {
             }
         }
 
-        return new Node(element.localName, path, this.obtainAttributes(element), convertionChildren);
+        return new Node(element.localName, path, this.obtainAttributes(element), convertionChildren, value);
     }
 
     private obtainAttributes(element: Element): Record<string, string> {
@@ -66,5 +67,20 @@ export class CfdiToDataNode {
         }
 
         return `{${namespace}}/${parentsStack.reverse().join('/')}`;
+    }
+
+    private extractValue(element: Element): string {
+        const values: string[] = [];
+        const elementChildNodes = Array.from(element.childNodes);
+
+        for (const childNode of elementChildNodes) {
+            if (childNode.nodeType !== childNode.TEXT_NODE) {
+                continue;
+            }
+
+            values.push((childNode as Text).data);
+        }
+
+        return values.join('').replace(/\s+/g, ' ').replace(/^ +/g, '').replace(/ +$/g, '');
     }
 }
