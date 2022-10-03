@@ -109,6 +109,16 @@ llaves directas a objetos o bien como arreglos de objetos.</p>
 <p>Para detectar los elementos con múltiples apariciones esta librería contiene un archivo <code>src/UnboundedOccursPaths.json</code>
 con el listado de rutas de elementos que pueden aparecer más de una vez.</p>
 
+<a href="#nodos-con-texto" id="nodos-con-texto" style="color: inherit; text-decoration: none;">
+  <h3>Nodos con texto</h3>
+</a>
+<p>El texto o valor que contenga algún nodo XML es exportado a una llave de cadena vacía en el JSON resultante. Por ejemplo, el siguiente XML:</p>
+<pre><code class="language-xml"><span class="hl-9">&lt;</span><span class="hl-10">detallista:orderIdentification</span><span class="hl-9">&gt;</span><br/><span class="hl-0">    </span><span class="hl-9">&lt;</span><span class="hl-10">detallista:referenceIdentification</span><span class="hl-0"> </span><span class="hl-11">type</span><span class="hl-0">=</span><span class="hl-12">&quot;ON&quot;</span><span class="hl-9">&gt;</span><span class="hl-0">3</span><span class="hl-9">&lt;/</span><span class="hl-10">detallista:referenceIdentification</span><span class="hl-9">&gt;</span><br/><span class="hl-9">&lt;/</span><span class="hl-10">detallista:orderIdentification</span><span class="hl-9">&gt;</span>
+</code></pre>
+<p>Genera el siguiente JSON:</p>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-8">&quot;orderIdentification&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-8">&quot;referenceIdentification&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">      </span><span class="hl-8">&quot;&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;3&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-8">&quot;type&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;ON&quot;</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+
 <a href="#soporte" id="soporte" style="color: inherit; text-decoration: none;">
   <h2>Soporte</h2>
 </a>
