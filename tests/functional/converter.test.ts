@@ -65,7 +65,28 @@ describe('Converter', () => {
     });
 
     test('converter exports nodes as record when they are known from complemento', () => {
-        expect(data.Complemento[0]['ImpuestosLocales']['TrasladosLocales']).toHaveLength(1);
+        expect(data['Complemento'][0]['ImpuestosLocales']['TrasladosLocales']).toHaveLength(1);
+    });
+
+    test('converter export node value', () => {
+        const data = JsonConverter.convertToRecord<{
+            Complemento: [
+                {
+                    detallista: {
+                        specialInstruction: {
+                            text: {
+                                '': string;
+                            };
+                        };
+                    };
+                }
+            ];
+        }>(TestCase.fileContents('detallista-example.xml'));
+
+        // must replace white-spaces
+        expect(data['Complemento'][0]['detallista']['specialInstruction']['text']['']).toBe(
+            'Un mil ciento sesenta pesos 00/100 m.n.'
+        );
     });
 
     test('json-converter', () => {

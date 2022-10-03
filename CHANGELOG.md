@@ -1,5 +1,13 @@
 # @nodecfdi/cfdi-to-json ChangeLog
 
+## 1.2.1
+
+### Text Node Support
+
+- Added support to read content of text nodes for more information check [phpcfdi/cfdi-to-json VERSION 0.3.2](https://github.com/phpcfdi/cfdi-to-json/releases/tag/v0.3.2)
+- Update dependencies
+- Small refactoring for eslint rules
+
 ## 1.2.0
 
 ### DOM Agnostic support
