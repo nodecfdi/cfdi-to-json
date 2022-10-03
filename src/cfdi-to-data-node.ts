@@ -66,7 +66,7 @@ export class CfdiToDataNode {
             parentsStack.push(current.localName);
         }
 
-        return `{${namespace}}/${parentsStack.reverse().join('/')}`;
+        return `{${namespace}}/${[...parentsStack].reverse().join('/')}`;
     }
 
     private extractValue(element: Element): string {
@@ -81,6 +81,6 @@ export class CfdiToDataNode {
             values.push((childNode as Text).data);
         }
 
-        return values.join('').replace(/\s+/g, ' ').replace(/^ +/g, '').replace(/ +$/g, '');
+        return values.join('').replace(/\s+/g, ' ').trim();
     }
 }
