@@ -262,6 +262,29 @@ llaves directas a objetos o bien como arreglos de objetos.
 Para detectar los elementos con múltiples apariciones esta librería contiene un archivo `src/UnboundedOccursPaths.json`
 con el listado de rutas de elementos que pueden aparecer más de una vez.
 
+### Nodos con texto
+
+El texto o valor que contenga algún nodo XML es exportado a una llave de cadena vacía en el JSON resultante. Por ejemplo, el siguiente XML:
+
+```xml
+<detallista:orderIdentification>
+    <detallista:referenceIdentification type="ON">3</detallista:referenceIdentification>
+</detallista:orderIdentification>
+```
+
+Genera el siguiente JSON:
+
+```json
+{
+  "orderIdentification": {
+    "referenceIdentification": {
+      "": "3",
+      "type": "ON"
+    }
+  }
+}
+```
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.
