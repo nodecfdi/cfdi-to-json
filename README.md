@@ -43,6 +43,12 @@ o
 yarn add @nodecfdi/cfdi-to-json
 ```
 
+o
+
+```shell
+pnpm add @nodecfdi/cfdi-to-json
+```
+
 ## Uso básico
 
 ### Convirtiendo de CFDI (string) a JSON (string) - Node Version with xmldom
