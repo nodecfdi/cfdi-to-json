@@ -1,5 +1,11 @@
 # @nodecfdi/cfdi-to-json ChangeLog
 
+## 1.2.2
+
+### Fix fs resolve
+
+- fix: fs resolve for bundlers like webpack, rollup, vite, etc
+
 ## 1.2.1
 
 ### Text Node Support

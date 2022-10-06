@@ -1,6 +1,6 @@
 {
     "name": "@nodecfdi/cfdi-to-json",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "Librería para convertir archivos CFDI a JSON",
     "keywords": [
         "SAT",
