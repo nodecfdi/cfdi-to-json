@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import { CfdiToDataNode } from './cfdi-to-data-node';
 import { FactoryBase } from './factory-base';
 import { UnboundedOccursPaths } from './unbounded-occurs-paths';
@@ -20,7 +19,9 @@ export class Factory extends FactoryBase {
     public createUnboundedOccursPathsUsingJsonFile(sourceFile: string): UnboundedOccursPaths {
         let contents = '';
         try {
-            contents = readFileSync(sourceFile, 'utf-8');
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const fs = require('fs');
+            contents = fs.readFileSync(sourceFile, 'utf-8');
         } catch (e) {
             throw new Error(`Unable to open file ${sourceFile}`);
         }
