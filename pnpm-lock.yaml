@@ -29,7 +29,7 @@ specifiers:
   jest-watch-typeahead: ^2.2.0
   lint-staged: ^13.0.3
   microbundle: ^0.15.1
-  prettier: ^2.7.1
+  prettier: ^3.0.0
   typedoc: ^0.23.15
   typedoc-theme-hierarchy: ^3.0.0
   typescript: ^4.8.4
@@ -56,7 +56,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.24.0
   eslint-define-config: 1.7.0
   eslint-plugin-jest: 27.0.4_xos47mdsd2fezepdqjjkf4gw5u
-  eslint-plugin-prettier: 4.2.1_cfn5x6ujhhgzv3423d6k7r2zzm
+  eslint-plugin-prettier: 4.2.1_oc7vu7csk6ekumqhqmi77mxqtu
   eslint-plugin-promise: 6.0.1_eslint@8.24.0
   eslint-plugin-tsdoc: 0.2.17
   husky: 8.0.1
@@ -65,7 +65,7 @@ devDependencies:
   jest-watch-typeahead: 2.2.0_jest@29.1.2
   lint-staged: 13.0.3
   microbundle: 0.15.1
-  prettier: 2.7.1
+  prettier: 3.0.0
   typedoc: 0.23.15_typescript@4.8.4
   typedoc-theme-hierarchy: 3.0.0_typedoc@0.23.15
   typescript: 4.8.4
@@ -3694,7 +3694,7 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_cfn5x6ujhhgzv3423d6k7r2zzm:
+  /eslint-plugin-prettier/4.2.1_oc7vu7csk6ekumqhqmi77mxqtu:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3707,7 +3707,7 @@ packages:
     dependencies:
       eslint: 8.24.0
       eslint-config-prettier: 8.5.0_eslint@8.24.0
-      prettier: 2.7.1
+      prettier: 3.0.0
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -6279,6 +6279,12 @@ packages:
   /prettier/2.7.1:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier/3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
