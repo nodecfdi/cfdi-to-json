@@ -67,7 +67,7 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-define-config": "^1.7.0",
         "eslint-plugin-jest": "^27.0.4",
-        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-promise": "^6.0.1",
         "eslint-plugin-tsdoc": "^0.2.17",
         "husky": "^8.0.1",
