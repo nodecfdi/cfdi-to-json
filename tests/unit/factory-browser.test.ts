@@ -1,5 +1,5 @@
-import { FactoryBrowser } from '~/factory-browser';
-import { UnboundedOccursPaths } from '~/unbounded-occurs-paths';
+import { FactoryBrowser } from 'src/factory-browser';
+import { UnboundedOccursPaths } from 'src/unbounded-occurs-paths';
 
 describe('FactoryBrowser', () => {
     test('construct factory uses default unbounded-occurs-paths', () => {
@@ -21,7 +21,7 @@ describe('FactoryBrowser', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('')).toThrowError(
-            'Unexpected end of JSON input'
+            'Unexpected end of JSON input',
         );
     });
 
@@ -29,7 +29,7 @@ describe('FactoryBrowser', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('""')).toThrowError(
-            'JSON does not contains an array of entries'
+            'JSON does not contains an array of entries',
         );
     });
 
@@ -37,7 +37,7 @@ describe('FactoryBrowser', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('["string", 2]')).toThrowError(
-            'JSON does not contains a string on index 1'
+            'JSON does not contains a string on index 1',
         );
     });
 });

@@ -1,9 +1,8 @@
 import { install } from '@nodecfdi/cfdiutils-common';
 import { DOMParser, XMLSerializer, DOMImplementation } from '@xmldom/xmldom';
-
-import { TestCase } from '../test-case';
-import { JsonConverter } from '~/json-converter';
-import { SafeNestedRecord } from '~/nodes/node';
+import { useTestCase } from '../test-case';
+import { JsonConverter } from 'src/json-converter';
+import { type SafeNestedRecord } from 'src/nodes/node';
 
 interface ImpuestosLocales extends SafeNestedRecord {
     ImpuestosLocales: {
@@ -27,6 +26,8 @@ interface TestData extends SafeNestedRecord {
 }
 
 describe('Converter', () => {
+    const { fileContents } = useTestCase();
+
     let data: TestData;
 
     beforeAll(() => {
@@ -34,7 +35,7 @@ describe('Converter', () => {
     });
 
     beforeEach(() => {
-        const xmlContents = TestCase.fileContents('cfdi-example.xml');
+        const xmlContents = fileContents('cfdi-example.xml');
 
         data = JsonConverter.convertToRecord(xmlContents);
     });
@@ -50,7 +51,7 @@ describe('Converter', () => {
     });
 
     test('convert export double nodes as record', () => {
-        const conceptos = data.Conceptos.Concepto || [];
+        const conceptos = data.Conceptos.Concepto;
         expect(conceptos).toHaveLength(2);
 
         const firstConcepto = conceptos[0] || [];
@@ -61,11 +62,11 @@ describe('Converter', () => {
     });
 
     test('converter exports nodes as record when they are known from comprobante', () => {
-        expect(data['Impuestos']['Traslados']['Traslado']).toHaveLength(1);
+        expect(data.Impuestos.Traslados.Traslado).toHaveLength(1);
     });
 
     test('converter exports nodes as record when they are known from complemento', () => {
-        expect(data['Complemento'][0]['ImpuestosLocales']['TrasladosLocales']).toHaveLength(1);
+        expect(data.Complemento[0].ImpuestosLocales.TrasladosLocales).toHaveLength(1);
     });
 
     test('converter export node value', () => {
@@ -79,19 +80,19 @@ describe('Converter', () => {
                             };
                         };
                     };
-                }
+                },
             ];
-        }>(TestCase.fileContents('detallista-example.xml'));
+        }>(fileContents('detallista-example.xml'));
 
         // must replace white-spaces
-        expect(data['Complemento'][0]['detallista']['specialInstruction']['text']['']).toBe(
-            'Un mil ciento sesenta pesos 00/100 m.n.'
+        expect(data.Complemento[0].detallista.specialInstruction.text['']).toBe(
+            'Un mil ciento sesenta pesos 00/100 m.n.',
         );
     });
 
     test('json-converter', () => {
-        const xmlContents = TestCase.fileContents('cfdi-example.xml');
-        const jsonFile = TestCase.fileContents('cfdi-example.json');
+        const xmlContents = fileContents('cfdi-example.xml');
+        const jsonFile = fileContents('cfdi-example.json');
         const json = JsonConverter.convertToJson(xmlContents, '\t');
         expect(JSON.parse(json)).toStrictEqual(JSON.parse(jsonFile));
         expect(`${json}\n`).toBe(jsonFile);

@@ -1,12 +1,19 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export class TestCase {
-    public static filePath(filename: string): string {
-        return join(__dirname, '_files', filename);
-    }
+const useTestCase = (): {
+    filePath: (append?: string) => string;
+    fileContents: (filename: string) => string;
+} => {
+    const filePath = (append = ''): string => join(dirname(fileURLToPath(import.meta.url)), '_files', append);
 
-    public static fileContents(filename: string): string {
-        return readFileSync(TestCase.filePath(filename), 'utf-8');
-    }
-}
+    const fileContents = (filename: string): string => readFileSync(filePath(filename), 'utf8');
+
+    return {
+        filePath,
+        fileContents,
+    };
+};
+
+export { useTestCase };

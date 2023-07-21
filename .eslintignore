@@ -1,19 +1,9 @@
-*.sh
 node_modules
-*.md
-*.woff
-*.ttf
-.vscode
-.idea
+coverage
 dist
-/public
-/docs
-/vendor
-.husky
-.local
-/bin
-/coverage
-tests/tsconfig.json
-tests/_files
-/examples
-UnboundedOccursPaths.json
+docs
+temp
+
+# Config files
+tsup.config.ts
+vitest.config.ts

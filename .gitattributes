@@ -2,7 +2,10 @@
 * text=auto
 
 # Do not put this files on a distribution package
+/.changeset/                export-ignore
 /.github/                   export-ignore
+/.husky/                    export-ignore
+/.vscode/                   export-ignore
 /tests/                     export-ignore
 /.gitattributes             export-ignore
 /.gitignore                 export-ignore
@@ -13,3 +16,7 @@
 /docs/**                    linguist-detectable=false
 /.husky/**                  linguist-detectable=false
 *.cjs                       linguist-detectable=false
+/examples/**                linguist-detectable=false
+*.mjs                       linguist-detectable=false
+
+*.json                      linguist-language=JSON-with-Comments

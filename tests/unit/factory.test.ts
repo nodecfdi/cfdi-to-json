@@ -1,5 +1,7 @@
-import { Factory } from '~/factory';
-import { UnboundedOccursPaths } from '~/unbounded-occurs-paths';
+import url from 'node:url';
+import path from 'node:path';
+import { Factory } from 'src/factory';
+import { UnboundedOccursPaths } from 'src/unbounded-occurs-paths';
 
 describe('Factory', () => {
     test('construct factory uses default unbounded-occurs-paths', () => {
@@ -20,24 +22,26 @@ describe('Factory', () => {
     test('create unbounded-occurs-paths using json file with invalid file', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
-        expect(() => factory.createUnboundedOccursPathsUsingJsonFile(`${__dirname}/not-found`)).toThrowError(
-            'Unable to open file'
-        );
+        expect(() =>
+            factory.createUnboundedOccursPathsUsingJsonFile(
+                `${path.dirname(url.fileURLToPath(import.meta.url))}/not-found`,
+            ),
+        ).toThrowError('Unable to open file');
     });
 
     test('create unbounded-occurs-paths using json file with invalid contents', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
-        expect(() => factory.createUnboundedOccursPathsUsingJsonFile(`${__filename}`)).toThrowError(
-            'has invalid contents'
-        );
+        expect(() =>
+            factory.createUnboundedOccursPathsUsingJsonFile(`${url.fileURLToPath(import.meta.url)}`),
+        ).toThrowError('has invalid contents');
     });
 
     test('create unbounded-occurs-paths using json source with invalid json', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('')).toThrowError(
-            'Unexpected end of JSON input'
+            'Unexpected end of JSON input',
         );
     });
 
@@ -45,7 +49,7 @@ describe('Factory', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('""')).toThrowError(
-            'JSON does not contains an array of entries'
+            'JSON does not contains an array of entries',
         );
     });
 
@@ -53,7 +57,7 @@ describe('Factory', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('["string", 2]')).toThrowError(
-            'JSON does not contains a string on index 1'
+            'JSON does not contains a string on index 1',
         );
     });
 });

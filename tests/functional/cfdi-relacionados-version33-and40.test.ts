@@ -1,7 +1,6 @@
 import { install } from '@nodecfdi/cfdiutils-common';
 import { DOMImplementation, DOMParser, XMLSerializer } from '@xmldom/xmldom';
-
-import { JsonConverter } from '~/json-converter';
+import { JsonConverter } from 'src/json-converter';
 
 describe('CfdiRelacionadosVersion33And40', () => {
     beforeAll(() => {
@@ -14,7 +13,7 @@ describe('CfdiRelacionadosVersion33And40', () => {
             '  <cfdi:CfdiRelacionados TipoRelacion="07">',
             '    <cfdi:CfdiRelacionado UUID="02b85c96-504a-4203-ac90-590cd991cf40"/>',
             '  </cfdi:CfdiRelacionados>',
-            '</cfdi:Comprobante>'
+            '</cfdi:Comprobante>',
         ].join('\n');
 
         const expectedJson = JSON.stringify(
@@ -24,13 +23,13 @@ describe('CfdiRelacionadosVersion33And40', () => {
                     TipoRelacion: '07',
                     CfdiRelacionado: [
                         {
-                            UUID: '02b85c96-504a-4203-ac90-590cd991cf40'
-                        }
-                    ]
-                }
+                            UUID: '02b85c96-504a-4203-ac90-590cd991cf40',
+                        },
+                    ],
+                },
             },
             null,
-            2
+            2,
         );
 
         expect(JsonConverter.convertToJson(cfdi33, 2)).toEqual(expectedJson);
@@ -42,7 +41,7 @@ describe('CfdiRelacionadosVersion33And40', () => {
             '  <cfdi:CfdiRelacionados TipoRelacion="07">',
             '    <cfdi:CfdiRelacionado UUID="02b85c96-504a-4203-ac90-590cd991cf40"/>',
             '  </cfdi:CfdiRelacionados>',
-            '</cfdi:Comprobante>'
+            '</cfdi:Comprobante>',
         ].join('\n');
 
         const expectedJson = JSON.stringify(
@@ -53,14 +52,14 @@ describe('CfdiRelacionadosVersion33And40', () => {
                         TipoRelacion: '07',
                         CfdiRelacionado: [
                             {
-                                UUID: '02b85c96-504a-4203-ac90-590cd991cf40'
-                            }
-                        ]
-                    }
-                ]
+                                UUID: '02b85c96-504a-4203-ac90-590cd991cf40',
+                            },
+                        ],
+                    },
+                ],
             },
             null,
-            2
+            2,
         );
 
         expect(JsonConverter.convertToJson(cfdi40, 2)).toEqual(expectedJson);

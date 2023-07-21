@@ -1,5 +1,5 @@
 import { FactoryBrowser } from './factory-browser';
-import { SafeNestedRecord } from './nodes/node';
+import { type SafeNestedRecord } from './nodes/node';
 
 export class JsonConverterBrowser {
     /**
