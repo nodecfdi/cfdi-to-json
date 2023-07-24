@@ -11,6 +11,15 @@ const sharedConfig = defineConfig({
     format: ['esm', 'cjs', 'iife'],
     minify: isCI,
     shims: true,
+    esbuildOptions: (options, context) => {
+        if (context.format !== 'esm') {
+            return;
+        }
+
+        options.banner = {
+            js: `import { createRequire } from 'module'; const require = createRequire(import.meta.url);`,
+        };
+    },
 });
 
 const mainConfig = defineConfig({

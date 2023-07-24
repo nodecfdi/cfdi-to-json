@@ -1,36 +1,31 @@
 import { install } from '@nodecfdi/cfdiutils-common';
-import { DOMImplementation, DOMParser, XMLSerializer } from '@xmldom/xmldom';
 import { useTestCase } from '../test-case';
 import { JsonConverterBrowser } from 'src/json-converter-browser';
 import { type SafeNestedRecord } from 'src/nodes/node';
 
-interface ImpuestosLocales extends SafeNestedRecord {
-    ImpuestosLocales: {
-        TrasladosLocales: SafeNestedRecord[];
-    };
-}
-
-interface TestData extends SafeNestedRecord {
-    Version: string;
-    SubTotal: string;
-    Emisor: Record<string, string>;
-    Conceptos: {
-        Concepto: SafeNestedRecord[];
-    };
-    Impuestos: {
-        Traslados: {
-            Traslado: SafeNestedRecord[];
-        };
-    };
-    Complemento: ImpuestosLocales[];
-}
-
-describe('Converter', () => {
+describe('converter_with_jsdom', () => {
     const { fileContents } = useTestCase();
-    let data: TestData;
+    let data: {
+        Version: string;
+        SubTotal: string;
+        Emisor: Record<string, string>;
+        Conceptos: {
+            Concepto: SafeNestedRecord[];
+        };
+        Impuestos: {
+            Traslados: {
+                Traslado: SafeNestedRecord[];
+            };
+        };
+        Complemento: Array<{
+            ImpuestosLocales: {
+                TrasladosLocales: SafeNestedRecord[];
+            };
+        }>;
+    };
 
     beforeAll(() => {
-        install(new DOMParser(), new XMLSerializer(), new DOMImplementation());
+        install(new DOMParser(), new XMLSerializer(), document.implementation);
     });
 
     beforeEach(() => {
@@ -39,17 +34,17 @@ describe('Converter', () => {
         data = JsonConverterBrowser.convertToRecord(xmlContents);
     });
 
-    test('convert export attributes from root node', () => {
+    test('convert_export_attributes_from_root_node', () => {
         expect(data.Version).toBe('3.3');
         expect(data.SubTotal).toBe('1709.12');
         expect(data).toHaveProperty('xsi:schemaLocation');
     });
 
-    test('convert export children nodes from root node', () => {
+    test('convert_export_children_nodes_from_root_node', () => {
         expect(data).toHaveProperty('Emisor');
     });
 
-    test('convert export double nodes as record', () => {
+    test('convert_export_double_nodes_as_record', () => {
         const conceptos = data.Conceptos.Concepto;
         expect(conceptos).toHaveLength(2);
 
@@ -60,15 +55,15 @@ describe('Converter', () => {
         expect(secondConcepto.Descripcion).toBe('Restaurante');
     });
 
-    test('converter exports nodes as record when they are known from comprobante', () => {
+    test('converter_exports_nodes_as_record_when_they_are_known_from_comprobante', () => {
         expect(data.Impuestos.Traslados.Traslado).toHaveLength(1);
     });
 
-    test('converter exports nodes as record when they are known from complemento', () => {
+    test('converter_exports_nodes_as_record_when_they_are_known_from_complemento', () => {
         expect(data.Complemento[0].ImpuestosLocales.TrasladosLocales).toHaveLength(1);
     });
 
-    test('converter export node value', () => {
+    test('converter_export_node_value', () => {
         const data = JsonConverterBrowser.convertToRecord<{
             Complemento: [
                 {
@@ -89,7 +84,7 @@ describe('Converter', () => {
         );
     });
 
-    test('json-converter', () => {
+    test('json_converter', () => {
         const xmlContents = fileContents('cfdi-example.xml');
         const jsonFile = fileContents('cfdi-example.json');
         const json = JsonConverterBrowser.convertToJson(xmlContents, '\t');

@@ -35,7 +35,9 @@ export class CfdiToDataNode {
 
         // children to internal struct
         const convertionChildren = new Children(this._unboundedOccursPaths);
-        for (let childElement = element.firstChild; childElement !== null; childElement = element.nextSibling) {
+
+        // eslint-disable-next-line unicorn/prefer-spread
+        for (const childElement of Array.from(element.childNodes)) {
             if (DomValidators.isElement(childElement)) {
                 convertionChildren.append(this.convertElementToDataNode(childElement));
             }
@@ -45,13 +47,10 @@ export class CfdiToDataNode {
     }
 
     private obtainAttributes(element: Element): Record<string, string> {
-        const elementAttributes = element.attributes;
-
         const attributes: Record<string, string> = {};
-        let index;
-        for (index = 0; index < elementAttributes.length; index++) {
-            const attribute = elementAttributes[index];
-            attributes[attribute.nodeName] = attribute.value;
+        // eslint-disable-next-line unicorn/prefer-spread
+        for (const attribute of Array.from(element.attributes)) {
+            attributes[attribute.name] = attribute.value;
         }
 
         return attributes;
@@ -62,7 +61,7 @@ export class CfdiToDataNode {
         const parentsStack: string[] = [];
 
         for (let current: ParentNode | null = element; current !== null; current = current.parentNode) {
-            if (!DomValidators.isElement(current)) {
+            if (!DomValidators.isElement(current) && !DomValidators.isAttr(current)) {
                 continue;
             }
 
@@ -78,7 +77,8 @@ export class CfdiToDataNode {
 
     private extractValue(element: Element): string {
         const values: string[] = [];
-        for (let children = element.firstChild; children !== null; children = children.nextSibling) {
+        // eslint-disable-next-line unicorn/prefer-spread
+        for (const children of Array.from(element.childNodes)) {
             if (!DomValidators.isText(children)) {
                 continue;
             }
@@ -86,6 +86,6 @@ export class CfdiToDataNode {
             values.push(children.data);
         }
 
-        return values.join('').replaceAll(/\s+/g, ' ').trim();
+        return values.join('').replaceAll(/\s+/g, ' ').replaceAll(/^ +/g, '').replaceAll(/ +$/g, '');
     }
 }

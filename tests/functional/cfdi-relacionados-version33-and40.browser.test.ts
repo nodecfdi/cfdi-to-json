@@ -1,10 +1,9 @@
 import { install } from '@nodecfdi/cfdiutils-common';
-import { DOMImplementation, DOMParser, XMLSerializer } from '@xmldom/xmldom';
-import { JsonConverter } from 'src/json-converter';
+import { JsonConverterBrowser } from 'src/json-converter-browser';
 
-describe('cfdi_relacionados_version33_and_version40', () => {
+describe('cfdi_relacionados_version33_and_version40_with_jsdom', () => {
     beforeAll(() => {
-        install(new DOMParser(), new XMLSerializer(), new DOMImplementation());
+        install(new DOMParser(), new XMLSerializer(), document.implementation);
     });
 
     test('cfdi_relacionados_version33', () => {
@@ -32,7 +31,7 @@ describe('cfdi_relacionados_version33_and_version40', () => {
             2,
         );
 
-        expect(JsonConverter.convertToJson(cfdi33, 2)).toEqual(expectedJson);
+        expect(JsonConverterBrowser.convertToJson(cfdi33, 2)).toEqual(expectedJson);
     });
 
     test('cfdi_relacionados_version40', () => {
@@ -62,6 +61,6 @@ describe('cfdi_relacionados_version33_and_version40', () => {
             2,
         );
 
-        expect(JsonConverter.convertToJson(cfdi40)).toEqual(expectedJson);
+        expect(JsonConverterBrowser.convertToJson(cfdi40)).toEqual(expectedJson);
     });
 });
