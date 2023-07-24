@@ -1,12 +1,10 @@
 import { install } from '@nodecfdi/cfdiutils-common';
-import { DOMParser, XMLSerializer, DOMImplementation } from '@xmldom/xmldom';
 import { useTestCase } from '../test-case';
-import { JsonConverter } from 'src/json-converter';
+import { JsonConverterBrowser } from 'src/json-converter-browser';
 import { type SafeNestedRecord } from 'src/nodes/node';
 
-describe('converter', () => {
+describe('converter_with_jsdom', () => {
     const { fileContents } = useTestCase();
-
     let data: {
         Version: string;
         SubTotal: string;
@@ -27,16 +25,16 @@ describe('converter', () => {
     };
 
     beforeAll(() => {
-        install(new DOMParser(), new XMLSerializer(), new DOMImplementation());
+        install(new DOMParser(), new XMLSerializer(), document.implementation);
     });
 
     beforeEach(() => {
         const xmlContents = fileContents('cfdi-example.xml');
 
-        data = JsonConverter.convertToRecord(xmlContents);
+        data = JsonConverterBrowser.convertToRecord(xmlContents);
     });
 
-    test('convert_export_attributes_from_root node', () => {
+    test('convert_export_attributes_from_root_node', () => {
         expect(data.Version).toBe('3.3');
         expect(data.SubTotal).toBe('1709.12');
         expect(data).toHaveProperty('xsi:schemaLocation');
@@ -66,7 +64,7 @@ describe('converter', () => {
     });
 
     test('converter_export_node_value', () => {
-        const data = JsonConverter.convertToRecord<{
+        const data = JsonConverterBrowser.convertToRecord<{
             Complemento: [
                 {
                     detallista: {
@@ -89,7 +87,7 @@ describe('converter', () => {
     test('json_converter', () => {
         const xmlContents = fileContents('cfdi-example.xml');
         const jsonFile = fileContents('cfdi-example.json');
-        const json = JsonConverter.convertToJson(xmlContents, '\t');
+        const json = JsonConverterBrowser.convertToJson(xmlContents, '\t');
         expect(JSON.parse(json)).toStrictEqual(JSON.parse(jsonFile));
         expect(`${json}\n`).toBe(jsonFile);
     });

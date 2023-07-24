@@ -1,6 +1,6 @@
-import { KeysCounter } from '~/nodes/keys-counter';
+import { KeysCounter } from 'src/nodes/keys-counter';
 
-describe('KeysCounter', () => {
+describe('keys_counter', () => {
     const createPopulatedCounter = (...keys: string[]): KeysCounter => {
         const counter = new KeysCounter();
         for (const key of keys) {
@@ -10,7 +10,7 @@ describe('KeysCounter', () => {
         return counter;
     };
 
-    test('has many', () => {
+    test('has_many', () => {
         const counter = createPopulatedCounter('author', 'chapter', 'chapter');
 
         expect(counter.hasMany('chapter')).toBeTruthy();

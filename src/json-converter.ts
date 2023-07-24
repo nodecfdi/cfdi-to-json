@@ -1,5 +1,5 @@
 import { Factory } from './factory';
-import { SafeNestedRecord } from './nodes/node';
+import { type SafeNestedRecord } from './nodes/node';
 
 export class JsonConverter {
     /**

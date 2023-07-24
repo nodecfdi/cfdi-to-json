@@ -1,14 +1,14 @@
-import { FactoryBrowser } from '~/factory-browser';
-import { UnboundedOccursPaths } from '~/unbounded-occurs-paths';
+import { FactoryBrowser } from 'src/factory-browser';
+import { UnboundedOccursPaths } from 'src/unbounded-occurs-paths';
 
-describe('FactoryBrowser', () => {
-    test('construct factory uses default unbounded-occurs-paths', () => {
+describe('factory_browser', () => {
+    test('construct_factory_uses_default_unbounded-occurs-paths', () => {
         const factory = new FactoryBrowser();
 
         expect(factory.getUnboundedOccursPaths()).toStrictEqual(factory.createDefaultUnboundedOccursPaths());
     });
 
-    test('construct factory uses given unbounded-occurs-paths', () => {
+    test('construct_factory_uses_given_unbounded-occurs-paths', () => {
         const unboundedOccursPaths = new UnboundedOccursPaths();
         const factory = new FactoryBrowser(unboundedOccursPaths);
         expect(factory.getUnboundedOccursPaths()).toStrictEqual(unboundedOccursPaths);
@@ -17,27 +17,27 @@ describe('FactoryBrowser', () => {
         expect(converter.getUnboundedOccursPaths()).toStrictEqual(unboundedOccursPaths);
     });
 
-    test('create unbounded-occurs-paths using json source with invalid json', () => {
+    test('create_unbounded-occurs-paths_using_json_source_with_invalid_json', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('')).toThrowError(
-            'Unexpected end of JSON input'
+            'Unexpected end of JSON input',
         );
     });
 
-    test('create unbounded-occurs-paths using json not array', () => {
+    test('create_unbounded-occurs-paths_using_json_not_array', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('""')).toThrowError(
-            'JSON does not contains an array of entries'
+            'JSON does not contains an array of entries',
         );
     });
 
-    test('create unbounde-occurs-paths using json not array of strings', () => {
+    test('create_unbounded-occurs-paths_using_json_not_array_of_strings', () => {
         const factory = new FactoryBrowser(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('["string", 2]')).toThrowError(
-            'JSON does not contains a string on index 1'
+            'JSON does not contains a string on index 1',
         );
     });
 });

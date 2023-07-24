@@ -1,17 +1,17 @@
-import { Children } from './children';
+import { type Children } from './children';
 
 export interface SafeNestedRecord extends Record<string, string | undefined | SafeNestedRecord | SafeNestedRecord[]> {}
 
 export class Node {
-    private _key: string;
+    private readonly _key: string;
 
-    private _path: string;
+    private readonly _path: string;
 
-    private _children: Children;
+    private readonly _children: Children;
 
-    private _attributes: Record<string, string>;
+    private readonly _attributes: Record<string, string>;
 
-    private _value: string;
+    private readonly _value: string;
 
     constructor(key: string, path: string, attributes: Record<string, string>, children: Children, value = '') {
         this._key = key;
@@ -34,7 +34,7 @@ export class Node {
     }
 
     public toRecord(): SafeNestedRecord {
-        const textRecord = '' !== this.getValue() ? { '': this.getValue() } : {};
+        const textRecord = this.getValue() === '' ? {} : { '': this.getValue() };
 
         return { ...textRecord, ...this._attributes, ...this._children.toRecord() };
     }

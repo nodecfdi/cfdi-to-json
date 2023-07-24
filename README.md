@@ -33,20 +33,30 @@ Libreria inspirada por la versión para php <https://github.com/phpcfdi/cfdi-to-
 
 ## Instalación
 
-```shell
+### NPM
+
+```bash
 npm i @nodecfdi/cfdi-to-json --save
 ```
 
-o
+### YARN
 
-```shell
-yarn add @nodecfdi/cfdi-to-json
+```bash
+yarn add @nodecfdi/cfdi-to-json --save
 ```
 
-o
+### PNPM
 
-```shell
-pnpm add @nodecfdi/cfdi-to-json
+```bash
+pnpm add @nodecfdi/cfdi-to-json --save
+```
+
+### CDN - Browser
+
+Usa la versión mas reciente publicada cambiando `<latest-version>` por la última versión. Por ejemplo ...cfdi-to-json@1.2.3/dist...
+
+```html
+<script src="https://unpkg.com/@nodecfdi/cfdi-to-json@<latest-version>/dist/cfdi-to-json.global.js"></script>
 ```
 
 ## Uso básico
@@ -332,7 +342,7 @@ The `@nodecfdi/cfdi-to-json` library is copyright © [NodeCfdi](https://github.c
 [badge-discord]: https://img.shields.io/discord/459860554090283019?logo=discord
 [badge-release]: https://img.shields.io/npm/v/@nodecfdi/cfdi-to-json.svg?logo=npm
 [badge-license]: https://img.shields.io/github/license/nodecfdi/cfdi-to-json.svg?logo=open-source-initiative
-[badge-build]: https://img.shields.io/github/workflow/status/nodecfdi/cfdi-to-json/build/main?logo=github-actions
+[badge-build]: https://img.shields.io/github/actions/workflow/status/nodecfdi/cfdi-to-json/build.yml?branch=main&logo=github-actions
 [badge-reliability]: https://sonarcloud.io/api/project_badges/measure?project=nodecfdi_cfdi-to-json&metric=reliability_rating
 [badge-maintainability]: https://sonarcloud.io/api/project_badges/measure?project=nodecfdi_cfdi-to-json&metric=sqale_rating
 [badge-coverage]: https://img.shields.io/sonar/coverage/nodecfdi_cfdi-to-json/main?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io

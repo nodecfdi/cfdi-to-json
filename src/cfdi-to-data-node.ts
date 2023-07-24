@@ -1,10 +1,10 @@
-import { getParser } from '@nodecfdi/cfdiutils-common';
+import { DomValidators, getParser } from '@nodecfdi/cfdiutils-common';
 import { Children } from './nodes/children';
 import { Node } from './nodes/node';
-import { UnboundedOccursPaths } from './unbounded-occurs-paths';
+import { type UnboundedOccursPaths } from './unbounded-occurs-paths';
 
 export class CfdiToDataNode {
-    private _unboundedOccursPaths: UnboundedOccursPaths;
+    private readonly _unboundedOccursPaths: UnboundedOccursPaths;
 
     constructor(unboundedOccursPaths: UnboundedOccursPaths) {
         this._unboundedOccursPaths = unboundedOccursPaths;
@@ -21,6 +21,7 @@ export class CfdiToDataNode {
     }
 
     public convertXmlDocument(doc: Document): Node {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (doc.documentElement === null) {
             throw new Error('The DOMDocument does not have a root element');
         }
@@ -34,9 +35,11 @@ export class CfdiToDataNode {
 
         // children to internal struct
         const convertionChildren = new Children(this._unboundedOccursPaths);
+
+        // eslint-disable-next-line unicorn/prefer-spread
         for (const childElement of Array.from(element.childNodes)) {
-            if (childElement.nodeType === childElement.ELEMENT_NODE) {
-                convertionChildren.append(this.convertElementToDataNode(childElement as Element));
+            if (DomValidators.isElement(childElement)) {
+                convertionChildren.append(this.convertElementToDataNode(childElement));
             }
         }
 
@@ -44,21 +47,24 @@ export class CfdiToDataNode {
     }
 
     private obtainAttributes(element: Element): Record<string, string> {
-        const elementAttributes = Array.from(element.attributes);
-
         const attributes: Record<string, string> = {};
-        for (const attribute of elementAttributes) {
-            attributes[attribute.nodeName] = attribute.value;
+        // eslint-disable-next-line unicorn/prefer-spread
+        for (const attribute of Array.from(element.attributes)) {
+            attributes[attribute.name] = attribute.value;
         }
 
         return attributes;
     }
 
     private buildPathForElement(element: Element): string {
-        const namespace = element.namespaceURI || '';
+        const namespace = element.namespaceURI ?? '';
         const parentsStack: string[] = [];
 
-        for (let current: Element | null = element; null !== current; current = current.parentNode as Element) {
+        for (let current: ParentNode | null = element; current !== null; current = current.parentNode) {
+            if (!DomValidators.isElement(current) && !DomValidators.isAttr(current)) {
+                continue;
+            }
+
             if (namespace !== current.namespaceURI) {
                 break;
             }
@@ -71,16 +77,15 @@ export class CfdiToDataNode {
 
     private extractValue(element: Element): string {
         const values: string[] = [];
-        const elementChildNodes = Array.from(element.childNodes);
-
-        for (const childNode of elementChildNodes) {
-            if (childNode.nodeType !== childNode.TEXT_NODE) {
+        // eslint-disable-next-line unicorn/prefer-spread
+        for (const children of Array.from(element.childNodes)) {
+            if (!DomValidators.isText(children)) {
                 continue;
             }
 
-            values.push((childNode as Text).data);
+            values.push(children.data);
         }
 
-        return values.join('').replace(/\s+/g, ' ').trim();
+        return values.join('').replaceAll(/\s+/g, ' ').trim();
     }
 }

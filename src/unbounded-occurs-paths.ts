@@ -1,15 +1,15 @@
 export class UnboundedOccursPaths {
-    private paths: Map<string, number | string>;
+    private readonly _paths: Map<string, number | string>;
 
     constructor(...paths: string[]) {
-        this.paths = paths.reduce((obj, value, key) => {
-            obj.set(value, key);
+        this._paths = new Map<string, number>();
 
-            return obj;
-        }, new Map());
+        for (const [key, value] of paths.entries()) {
+            this._paths.set(value, key);
+        }
     }
 
     public match(path: string): boolean {
-        return this.paths.has(path);
+        return this._paths.has(path);
     }
 }
