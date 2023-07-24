@@ -1,4 +1,3 @@
-import JsonContents from './UnboundedOccursPaths.json';
 import { CfdiToDataNode } from './cfdi-to-data-node';
 import { FactoryBase } from './factory-base';
 import { type UnboundedOccursPaths } from './unbounded-occurs-paths';
@@ -11,13 +10,5 @@ export class FactoryBrowser extends FactoryBase {
 
     public createConverter(): CfdiToDataNode {
         return new CfdiToDataNode(this.getUnboundedOccursPaths());
-    }
-
-    public createDefaultUnboundedOccursPaths(): UnboundedOccursPaths {
-        return this.createUnboundedOccursPathsUsingJsonFile();
-    }
-
-    public createUnboundedOccursPathsUsingJsonFile(): UnboundedOccursPaths {
-        return this.createUnboundedOccursPathsUsingJsonSource(JSON.stringify(JsonContents));
     }
 }

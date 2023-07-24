@@ -1,16 +1,19 @@
 import url from 'node:url';
 import path from 'node:path';
+import { useTestCase } from '../test-case';
 import { Factory } from 'src/factory';
 import { UnboundedOccursPaths } from 'src/unbounded-occurs-paths';
 
-describe('Factory', () => {
-    test('construct factory uses default unbounded-occurs-paths', () => {
+describe('factory', () => {
+    const { filePath } = useTestCase();
+
+    test('construct_factory_uses_default_unbounded-occurs-paths', () => {
         const factory = new Factory();
 
         expect(factory.getUnboundedOccursPaths()).toStrictEqual(factory.createDefaultUnboundedOccursPaths());
     });
 
-    test('construct factory uses given unbounded-occurs-paths', () => {
+    test('construct_factory_uses_given_unbounded-occurs-paths', () => {
         const unboundedOccursPaths = new UnboundedOccursPaths();
         const factory = new Factory(unboundedOccursPaths);
         expect(factory.getUnboundedOccursPaths()).toStrictEqual(unboundedOccursPaths);
@@ -19,7 +22,18 @@ describe('Factory', () => {
         expect(converter.getUnboundedOccursPaths()).toStrictEqual(unboundedOccursPaths);
     });
 
-    test('create unbounded-occurs-paths using json file with invalid file', () => {
+    test('create_unbounded-occurs-paths_using_json_file_valid', () => {
+        let factory = new Factory();
+        const unboundedOccursPaths = factory.createUnboundedOccursPathsUsingJsonFile(
+            filePath('UnboundedOccursPaths.json'),
+        );
+
+        factory = new Factory(unboundedOccursPaths);
+
+        expect(factory.getUnboundedOccursPaths()).toStrictEqual(factory.createDefaultUnboundedOccursPaths());
+    });
+
+    test('create_unbounded-occurs-paths_using_json_file_with_invalid_file', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() =>
@@ -29,7 +43,7 @@ describe('Factory', () => {
         ).toThrowError('Unable to open file');
     });
 
-    test('create unbounded-occurs-paths using json file with invalid contents', () => {
+    test('create_unbounded-occurs-paths_using_json_file_with_invalid_contents', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() =>
@@ -37,7 +51,7 @@ describe('Factory', () => {
         ).toThrowError('has invalid contents');
     });
 
-    test('create unbounded-occurs-paths using json source with invalid json', () => {
+    test('create_unbounded-occurs-paths_using_json_source_with_invalid_json', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('')).toThrowError(
@@ -45,7 +59,7 @@ describe('Factory', () => {
         );
     });
 
-    test('create unbounded-occurs-paths using json not array', () => {
+    test('create_unbounded-occurs-paths_using_json_not_array', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('""')).toThrowError(
@@ -53,7 +67,7 @@ describe('Factory', () => {
         );
     });
 
-    test('create unbounde-occurs-paths using json not array of strings', () => {
+    test('create_unbounded-occurs-paths_using_json_not_array_of_strings', () => {
         const factory = new Factory(new UnboundedOccursPaths());
 
         expect(() => factory.createUnboundedOccursPathsUsingJsonSource('["string", 2]')).toThrowError(

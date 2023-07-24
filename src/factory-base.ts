@@ -1,3 +1,4 @@
+import JsonContents from './UnboundedOccursPaths.json';
 import { UnboundedOccursPaths } from './unbounded-occurs-paths';
 
 export abstract class FactoryBase {
@@ -5,6 +6,10 @@ export abstract class FactoryBase {
 
     public getUnboundedOccursPaths(): UnboundedOccursPaths {
         return this._unboundedOccursPaths;
+    }
+
+    public createDefaultUnboundedOccursPaths(): UnboundedOccursPaths {
+        return this.createUnboundedOccursPathsUsingJsonSource(JSON.stringify(JsonContents));
     }
 
     public createUnboundedOccursPathsUsingJsonSource(contents: string): UnboundedOccursPaths {

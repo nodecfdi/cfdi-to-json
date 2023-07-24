@@ -12,18 +12,6 @@ export class Factory extends FactoryBase {
         return new CfdiToDataNode(this.getUnboundedOccursPaths());
     }
 
-    public createDefaultUnboundedOccursPaths(): UnboundedOccursPaths {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment, unicorn/prefer-module
-        const path: { dirname: (path: string) => string } = require('node:path');
-
-        // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment, unicorn/prefer-module
-        const url: { fileURLToPath: (path: string) => string } = require('node:url');
-
-        return this.createUnboundedOccursPathsUsingJsonFile(
-            `${path.dirname(url.fileURLToPath(import.meta.url))}/UnboundedOccursPaths.json`,
-        );
-    }
-
     public createUnboundedOccursPathsUsingJsonFile(sourceFile: string): UnboundedOccursPaths {
         let contents = '';
         try {
