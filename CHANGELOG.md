@@ -1,5 +1,18 @@
 # @nodecfdi/cfdi-to-json ChangeLog
 
+## 1.2.3
+
+### Patch Changes - Maintenance and Small Optimizations
+
+- Update dependencies
+- Update types exports for typescript module and commonjs
+- Update to ESM support
+- Update CI workflow for fix pipeline to latest github and pnpm changes
+- Resolve build bags on readme
+- Change from microbundle to tsup
+- Increment code coverage
+- Drop support to node versions < 16
+
 ## 1.2.2
 
 ### Fix fs resolve
