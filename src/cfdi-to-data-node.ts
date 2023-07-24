@@ -86,6 +86,6 @@ export class CfdiToDataNode {
             values.push(children.data);
         }
 
-        return values.join('').replaceAll(/\s+/g, ' ').replaceAll(/^ +/g, '').replaceAll(/ +$/g, '');
+        return values.join('').replaceAll(/\s+/g, ' ').trim();
     }
 }
