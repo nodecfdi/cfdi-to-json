@@ -65,11 +65,7 @@ Usa la versión mas reciente publicada cambiando `<latest-version>` por la últi
 
 ```ts
 import { install } from '@nodecfdi/cfdiutils-common';
-import {
-    DOMImplementation,
-    XMLSerializer,
-    DOMParser
-} from '@xmldom/xmldom';
+import { DOMImplementation, XMLSerializer, DOMParser } from '@xmldom/xmldom';
 import { readFileSync } from 'fs';
 import { JsonConverter } from '@nodecfdi/cfdi-to-json';
 
@@ -87,12 +83,7 @@ console.log(json);
 ```ts
 import { Factory } from '@nodecfdi/cfdi-to-json';
 import { install } from '@nodecfdi/cfdiutils-common';
-import {
-    DOMImplementation,
-    XMLSerializer,
-    DOMParser
-} from '@xmldom/xmldom';
-
+import { DOMImplementation, XMLSerializer, DOMParser } from '@xmldom/xmldom';
 
 // from version 1.2.x on @nodecfdi/cfdiutils-common required install dom resolution
 install(new DOMParser(), new XMLSerializer(), new DOMImplementation());
@@ -148,119 +139,119 @@ Note que:
 
 ```json
 {
- "Certificado": "MIIGH...imAyX",
- "CondicionesDePago": "CONTADO",
- "Fecha": "2018-01-12T08:15:01",
- "Folio": "11541",
- "FormaPago": "04",
- "LugarExpedicion": "76802",
- "MetodoPago": "PUE",
- "Moneda": "MXN",
- "NoCertificado": "00001000000401220451",
- "Sello": "Xt7tK...gdg==",
- "Serie": "H",
- "SubTotal": "1709.12",
- "TipoDeComprobante": "I",
- "Total": "2010.01",
- "Version": "3.3",
- "xsi:schemaLocation": "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd",
- "Emisor": {
-  "Nombre": "PROMOTORA OTIR SA DE CV",
-  "RegimenFiscal": "601",
-  "Rfc": "POT9207213D6"
- },
- "Receptor": {
-  "Nombre": "DAY INTERNATIONAL DE MEXICO SA DE CV",
-  "Rfc": "DIM8701081LA",
-  "UsoCFDI": "G03"
- },
- "Conceptos": {
-  "Concepto": [
-   {
-    "Cantidad": "2.00",
-    "ClaveProdServ": "90111501",
-    "ClaveUnidad": "E48",
-    "Descripcion": "Paquete",
-    "Importe": "1355.67",
-    "Unidad": "UNIDAD DE SERVICIO",
-    "ValorUnitario": "677.83",
-    "Impuestos": {
-     "Traslados": {
-      "Traslado": [
-       {
-        "Base": "1355.67",
-        "Importe": "216.91",
-        "Impuesto": "002",
-        "TasaOCuota": "0.160000",
-        "TipoFactor": "Tasa"
-       }
-      ]
-     }
-    }
-   },
-   {
-    "Cantidad": "1.00",
-    "ClaveProdServ": "90101501",
-    "ClaveUnidad": "E48",
-    "Descripcion": "Restaurante",
-    "Importe": "353.45",
-    "Unidad": "UNIDAD DE SERVICIO",
-    "ValorUnitario": "353.45",
-    "Impuestos": {
-     "Traslados": {
-      "Traslado": [
-       {
-        "Base": "353.45",
-        "Importe": "56.55",
-        "Impuesto": "002",
-        "TasaOCuota": "0.160000",
-        "TipoFactor": "Tasa"
-       }
-      ]
-     }
-    }
-   }
-  ]
- },
- "Impuestos": {
-  "TotalImpuestosTrasladados": "273.46",
-  "Traslados": {
-   "Traslado": [
-    {
-     "Importe": "273.46",
-     "Impuesto": "002",
-     "TasaOCuota": "0.160000",
-     "TipoFactor": "Tasa"
-    }
-   ]
-  }
- },
- "Complemento": [
-  {
-   "ImpuestosLocales": {
-    "TotaldeRetenciones": "0.00",
-    "TotaldeTraslados": "27.43",
-    "version": "1.0",
-    "TrasladosLocales": [
-     {
-      "ImpLocTrasladado": "IH",
-      "Importe": "27.43",
-      "TasadeTraslado": "2.50"
-     }
+  "Certificado": "MIIGH...imAyX",
+  "CondicionesDePago": "CONTADO",
+  "Fecha": "2018-01-12T08:15:01",
+  "Folio": "11541",
+  "FormaPago": "04",
+  "LugarExpedicion": "76802",
+  "MetodoPago": "PUE",
+  "Moneda": "MXN",
+  "NoCertificado": "00001000000401220451",
+  "Sello": "Xt7tK...gdg==",
+  "Serie": "H",
+  "SubTotal": "1709.12",
+  "TipoDeComprobante": "I",
+  "Total": "2010.01",
+  "Version": "3.3",
+  "xsi:schemaLocation": "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd",
+  "Emisor": {
+    "Nombre": "PROMOTORA OTIR SA DE CV",
+    "RegimenFiscal": "601",
+    "Rfc": "POT9207213D6"
+  },
+  "Receptor": {
+    "Nombre": "DAY INTERNATIONAL DE MEXICO SA DE CV",
+    "Rfc": "DIM8701081LA",
+    "UsoCFDI": "G03"
+  },
+  "Conceptos": {
+    "Concepto": [
+      {
+        "Cantidad": "2.00",
+        "ClaveProdServ": "90111501",
+        "ClaveUnidad": "E48",
+        "Descripcion": "Paquete",
+        "Importe": "1355.67",
+        "Unidad": "UNIDAD DE SERVICIO",
+        "ValorUnitario": "677.83",
+        "Impuestos": {
+          "Traslados": {
+            "Traslado": [
+              {
+                "Base": "1355.67",
+                "Importe": "216.91",
+                "Impuesto": "002",
+                "TasaOCuota": "0.160000",
+                "TipoFactor": "Tasa"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Cantidad": "1.00",
+        "ClaveProdServ": "90101501",
+        "ClaveUnidad": "E48",
+        "Descripcion": "Restaurante",
+        "Importe": "353.45",
+        "Unidad": "UNIDAD DE SERVICIO",
+        "ValorUnitario": "353.45",
+        "Impuestos": {
+          "Traslados": {
+            "Traslado": [
+              {
+                "Base": "353.45",
+                "Importe": "56.55",
+                "Impuesto": "002",
+                "TasaOCuota": "0.160000",
+                "TipoFactor": "Tasa"
+              }
+            ]
+          }
+        }
+      }
     ]
-   },
-   "TimbreFiscalDigital": {
-    "FechaTimbrado": "2018-01-12T08:17:54",
-    "NoCertificadoSAT": "00001000000406258094",
-    "RfcProvCertif": "DCD090706E42",
-    "SelloCFD": "Xt7tK...gdg==",
-    "SelloSAT": "IRy7w...6Zg==",
-    "UUID": "CEE4BE01-ADFA-4DEB-8421-ADD60F0BEDAC",
-    "Version": "1.1",
-    "xsi:schemaLocation": "http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
-   }
-  }
- ]
+  },
+  "Impuestos": {
+    "TotalImpuestosTrasladados": "273.46",
+    "Traslados": {
+      "Traslado": [
+        {
+          "Importe": "273.46",
+          "Impuesto": "002",
+          "TasaOCuota": "0.160000",
+          "TipoFactor": "Tasa"
+        }
+      ]
+    }
+  },
+  "Complemento": [
+    {
+      "ImpuestosLocales": {
+        "TotaldeRetenciones": "0.00",
+        "TotaldeTraslados": "27.43",
+        "version": "1.0",
+        "TrasladosLocales": [
+          {
+            "ImpLocTrasladado": "IH",
+            "Importe": "27.43",
+            "TasadeTraslado": "2.50"
+          }
+        ]
+      },
+      "TimbreFiscalDigital": {
+        "FechaTimbrado": "2018-01-12T08:17:54",
+        "NoCertificadoSAT": "00001000000406258094",
+        "RfcProvCertif": "DCD090706E42",
+        "SelloCFD": "Xt7tK...gdg==",
+        "SelloSAT": "IRy7w...6Zg==",
+        "UUID": "CEE4BE01-ADFA-4DEB-8421-ADD60F0BEDAC",
+        "Version": "1.1",
+        "xsi:schemaLocation": "http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      }
+    }
+  ]
 }
 ```
 
@@ -324,19 +315,17 @@ The `@nodecfdi/cfdi-to-json` library is copyright © [NodeCfdi](https://github.c
 
 [contributing]: https://github.com/nodecfdi/cfdi-to-json/blob/main/CONTRIBUTING.md
 [changelog]: https://github.com/nodecfdi/cfdi-to-json/blob/main/CHANGELOG.md
-
 [source]: https://github.com/nodecfdi/cfdi-to-json
 [node-version]: https://www.npmjs.com/package/@nodecfdi/cfdi-to-json
 [discord]: https://discord.gg/AsqX8fkW2k
 [release]: https://www.npmjs.com/package/@nodecfdi/cfdi-to-json
 [license]: https://github.com/nodecfdi/cfdi-to-json/blob/main/LICENSE
 [build]: https://github.com/nodecfdi/cfdi-to-json/actions/workflows/build.yml?query=branch:main
-[reliability]:https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-to-json&metric=Reliability
+[reliability]: https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-to-json&metric=Reliability
 [maintainability]: https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-to-json&metric=Maintainability
 [coverage]: https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-to-json&metric=Coverage
 [violations]: https://sonarcloud.io/project/issues?id=nodecfdi_cfdi-to-json&resolved=false
 [downloads]: https://www.npmjs.com/package/@nodecfdi/cfdi-to-json
-
 [badge-source]: https://img.shields.io/badge/source-nodecfdi/cfdi--to--json-blue.svg?logo=github
 [badge-node-version]: https://img.shields.io/node/v/@nodecfdi/cfdi-to-json.svg?logo=nodedotjs
 [badge-discord]: https://img.shields.io/discord/459860554090283019?logo=discord

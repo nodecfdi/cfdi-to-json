@@ -3,17 +3,18 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const useTestCase = (): {
-    filePath: (append?: string) => string;
-    fileContents: (filename: string) => string;
+  filePath: (append?: string) => string;
+  fileContents: (filename: string) => string;
 } => {
-    const filePath = (append = ''): string => join(dirname(fileURLToPath(import.meta.url)), '_files', append);
+  const filePath = (append = ''): string =>
+    join(dirname(fileURLToPath(import.meta.url)), '_files', append);
 
-    const fileContents = (filename: string): string => readFileSync(filePath(filename), 'utf8');
+  const fileContents = (filename: string): string => readFileSync(filePath(filename), 'utf8');
 
-    return {
-        filePath,
-        fileContents,
-    };
+  return {
+    filePath,
+    fileContents,
+  };
 };
 
 export { useTestCase };
