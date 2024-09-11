@@ -1,99 +1,115 @@
 {
-    "name": "@nodecfdi/cfdi-to-json",
-    "version": "1.2.3",
-    "description": "Librería para convertir archivos CFDI a JSON",
-    "keywords": [
-        "SAT",
-        "JSON",
-        "CFDI",
-        "CONVERTER",
-        "XML"
-    ],
-    "private": false,
-    "author": "OcelotlStudio <contacto@ocelotlstudio.com>",
-    "license": "MIT",
-    "type": "module",
-    "main": "./dist/cfdi-to-json.cjs",
-    "module": "./dist/cfdi-to-json.js",
-    "unpkg": "./dist/cfdi-to-json.global.js",
-    "browser": "./dist/cfdi-to-json.global.js",
-    "types": "./dist/types/index.d.ts",
-    "exports": {
-        ".": {
-            "import": {
-                "types": "./dist/index.d.ts",
-                "default": "./dist/cfdi-to-json.js"
-            },
-            "require": {
-                "types": "./dist/index.d.cts",
-                "default": "./dist/cfdi-to-json.cjs"
-            }
-        }
-    },
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "prepare": "is-ci || husky install",
-        "lint": "eslint . --fix --ext .ts,.js",
-        "lint:check": "eslint . --ext .ts,.js",
-        "test": "vitest",
-        "test:run": "vitest run",
-        "test:coverage": "vitest run --coverage",
-        "build": "rimraf dist && tsup",
-        "gen:docs": "rimraf docs && typedoc --options typedoc.json",
-        "release": "pnpm run build && pnpm changeset publish"
-    },
-    "repository": "https://github.com/nodecfdi/cfdi-to-json",
-    "bugs": {
-        "url": "https://github.com/nodecfdi/cfdi-to-json/issues"
-    },
-    "homepage": "https://github.com/nodecfdi/cfdi-to-json",
-    "devDependencies": {
-        "@changesets/cli": "^2.26.2",
-        "@commitlint/cli": "^17.6.7",
-        "@nodecfdi/eslint-config-nodecfdi": "^0.1.5",
-        "@nrsk/config-conventional": "^1.0.0",
-        "@types/is-ci": "^3.0.0",
-        "@types/node": "^20.4.4",
-        "@vitest/coverage-istanbul": "^0.34.0",
-        "@xmldom/xmldom": "^0.8.10",
-        "eslint": "^8.45.0",
-        "husky": "^8.0.3",
-        "is-ci": "^3.0.1",
-        "jsdom": "^22.1.0",
-        "lint-staged": "^13.2.3",
-        "prettier": "^3.0.0",
-        "rimraf": "^5.0.1",
-        "ts-mixer": "^6.0.3",
-        "tsup": "^7.1.0",
-        "typedoc": "^0.25.0",
-        "typedoc-theme-hierarchy": "^4.0.0",
-        "typescript": "^5.1.6",
-        "vite": "^4.4.7",
-        "vitest": "^0.34.0"
-    },
-    "dependencies": {
-        "@nodecfdi/cfdiutils-common": "^1.2.6"
-    },
-    "commitlint": {
-        "extends": [
-            "@nrsk/config-conventional"
-        ]
-    },
-    "lint-staged": {
-        "*.{json}": [
-            "prettier --write"
-        ],
-        "*.{js,ts}": [
-            "eslint --fix"
-        ]
-    },
-    "engines": {
-        "node": ">= 16.0.0"
-    },
-    "browserslist": [
-        "defaults",
-        "not IE 11"
+  "name": "@nodecfdi/cfdi-to-json",
+  "description": "Librería para convertir archivos CFDI a JSON",
+  "version": "1.2.3",
+  "type": "module",
+  "main": "",
+  "module": "",
+  "types": "",
+  "files": [
+    "dist"
+  ],
+  "exports": {},
+  "imports": {
+    "#src/*": "./src/*.js"
+  },
+  "scripts": {
+    "prepare": "is-in-ci || husky",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "gen:docs": "typedoc --options typedoc.json",
+    "changelog": "auto-changelog -p && git add CHANGELOG.md",
+    "prebuild": "pnpm lint:check && pnpm typecheck",
+    "build": "tshy",
+    "postbuild": "pnpm run gen:docs && git add docs/*",
+    "release": "np",
+    "version": "pnpm run build && pnpm run changelog"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@jsprismarine/typedoc-material-theme": "^1.0.4",
+    "@nodecfdi/cfdi-core": "^0.5.1",
+    "@nodecfdi/eslint-config": "^2.0.2",
+    "@nodecfdi/prettier-config": "^1.2.0",
+    "@nodecfdi/tsconfig": "^1.7.2",
+    "@types/node": "^20.16.5",
+    "@vitest/coverage-istanbul": "^2.0.5",
+    "auto-changelog": "^2.5.0",
+    "eslint": "^9.10.0",
+    "husky": "^9.1.6",
+    "is-in-ci": "^1.0.0",
+    "np": "^10.0.7",
+    "prettier": "^3.3.3",
+    "tshy": "^3.0.2",
+    "typedoc": "^0.26.7",
+    "typescript": "^5.6.2",
+    "vitest": "^2.0.5"
+  },
+  "dependencies": {
+    "ts-mixer": "^6.0.4"
+  },
+  "peerDependencies": {
+    "@nodecfdi/cfdi-core": ">=0.5.1"
+  },
+  "author": "Fernando Isidro <luffynando@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/nodecfdi/cfdi-to-json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodecfdi/cfdi-to-json.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodecfdi/cfdi-to-json/issues"
+  },
+  "keywords": [
+    "sat",
+    "json",
+    "cfdi",
+    "converter",
+    "xml",
+    "CFDI",
+    "XML"
+  ],
+  "engines": {
+    "node": ">=18 <=22 || ^16"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
+  },
+  "prettier": "@nodecfdi/prettier-config",
+  "packageManager": "pnpm@9.10.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "auto-changelog": {
+    "template": "keepachangelog",
+    "hideCredit": true
+  },
+  "np": {
+    "message": "chore(release): :tada: %s",
+    "tag": "latest",
+    "branch": "main",
+    "testScript": "test:run"
+  },
+  "tshy": {
+    "selfLink": false,
+    "exports": {
+      ".": "./src/index.ts",
+      "./package.json": "./package.json"
+    }
+  }
 }
