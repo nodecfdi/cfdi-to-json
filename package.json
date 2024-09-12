@@ -1,7 +1,7 @@
 {
   "name": "@nodecfdi/cfdi-to-json",
   "description": "Librería para convertir archivos CFDI a JSON",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "type": "module",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
