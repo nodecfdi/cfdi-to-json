@@ -1,4 +1,4 @@
-export class KeysCounter {
+export default class KeysCounter {
   private _counts: Record<string, number> = {};
 
   public register(key: string): void {

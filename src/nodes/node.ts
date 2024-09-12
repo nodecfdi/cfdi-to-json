@@ -1,9 +1,7 @@
-import { type Children } from './children';
+import type Children from '#src/nodes/children';
+import { type SafeNestedRecord } from '#src/types';
 
-export interface SafeNestedRecord
-  extends Record<string, string | undefined | SafeNestedRecord | SafeNestedRecord[]> {}
-
-export class Node {
+export default class Node {
   private readonly _key: string;
 
   private readonly _path: string;
@@ -14,7 +12,7 @@ export class Node {
 
   private readonly _value: string;
 
-  constructor(
+  public constructor(
     key: string,
     path: string,
     attributes: Record<string, string>,

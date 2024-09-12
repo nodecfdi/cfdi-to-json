@@ -1,12 +1,12 @@
-import { DomValidators, getParser } from '@nodecfdi/cfdiutils-common';
-import { Children } from './nodes/children';
-import { Node } from './nodes/node';
-import { type UnboundedOccursPaths } from './unbounded-occurs-paths';
+import { isAttribute, isElement, isText, newDocumentContent } from '@nodecfdi/cfdi-core';
+import Children from '#src/nodes/children';
+import Node from '#src/nodes/node';
+import type UnboundedOccursPaths from '#src/unbounded_occurs_paths';
 
-export class CfdiToDataNode {
+export default class CfdiToDataNode {
   private readonly _unboundedOccursPaths: UnboundedOccursPaths;
 
-  constructor(unboundedOccursPaths: UnboundedOccursPaths) {
+  public constructor(unboundedOccursPaths: UnboundedOccursPaths) {
     this._unboundedOccursPaths = unboundedOccursPaths;
   }
 
@@ -15,7 +15,7 @@ export class CfdiToDataNode {
   }
 
   public convertXmlContent(xmlContents: string): Node {
-    const doc = getParser().parseFromString(xmlContents, 'text/xml');
+    const doc = newDocumentContent(xmlContents);
 
     return this.convertXmlDocument(doc);
   }
@@ -38,7 +38,7 @@ export class CfdiToDataNode {
 
     // eslint-disable-next-line unicorn/prefer-spread
     for (const childElement of Array.from(element.childNodes)) {
-      if (DomValidators.isElement(childElement)) {
+      if (isElement(childElement)) {
         convertionChildren.append(this.convertElementToDataNode(childElement));
       }
     }
@@ -67,7 +67,7 @@ export class CfdiToDataNode {
     const parentsStack: string[] = [];
 
     for (let current: ParentNode | null = element; current !== null; current = current.parentNode) {
-      if (!DomValidators.isElement(current) && !DomValidators.isAttr(current)) {
+      if (!isElement(current) && !isAttribute(current)) {
         continue;
       }
 
@@ -85,7 +85,7 @@ export class CfdiToDataNode {
     const values: string[] = [];
     // eslint-disable-next-line unicorn/prefer-spread
     for (const children of Array.from(element.childNodes)) {
-      if (!DomValidators.isText(children)) {
+      if (!isText(children)) {
         continue;
       }
 

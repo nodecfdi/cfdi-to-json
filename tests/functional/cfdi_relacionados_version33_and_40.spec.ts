@@ -1,13 +1,7 @@
-import { install } from '@nodecfdi/cfdiutils-common';
-import { DOMImplementation, DOMParser, XMLSerializer } from '@xmldom/xmldom';
-import { JsonConverter } from 'src/json-converter';
+import JsonConverter from '#src/json_converter';
 
-describe('cfdi_relacionados_version33_and_version40', () => {
-  beforeAll(() => {
-    install(new DOMParser(), new XMLSerializer(), new DOMImplementation());
-  });
-
-  test('cfdi_relacionados_version33', () => {
+describe('cfdi relacionados version 33 and version 40', () => {
+  test('cfdi relacionados version 33', () => {
     const cfdi33 = [
       '<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">',
       '  <cfdi:CfdiRelacionados TipoRelacion="07">',
@@ -32,10 +26,12 @@ describe('cfdi_relacionados_version33_and_version40', () => {
       2,
     );
 
-    expect(JsonConverter.convertToJson(cfdi33, 2)).toEqual(expectedJson);
+    const jsonConverter = new JsonConverter();
+
+    expect(jsonConverter.convertToJson(cfdi33, 2)).toStrictEqual(expectedJson);
   });
 
-  test('cfdi_relacionados_version40', () => {
+  test('cfdi relacionados version40', () => {
     const cfdi40 = [
       '<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4">',
       '  <cfdi:CfdiRelacionados TipoRelacion="07">',
@@ -62,6 +58,8 @@ describe('cfdi_relacionados_version33_and_version40', () => {
       2,
     );
 
-    expect(JsonConverter.convertToJson(cfdi40)).toEqual(expectedJson);
+    const jsonConverter = new JsonConverter();
+
+    expect(jsonConverter.convertToJson(cfdi40)).toStrictEqual(expectedJson);
   });
 });
