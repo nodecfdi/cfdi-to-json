@@ -3,13 +3,45 @@
   "description": "Librería para convertir archivos CFDI a JSON",
   "version": "1.2.3",
   "type": "module",
-  "main": "",
-  "module": "",
-  "types": "",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/commonjs/index.d.ts",
   "files": [
     "dist"
   ],
-  "exports": {},
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./types": {
+      "import": {
+        "types": "./dist/esm/types.d.ts",
+        "default": "./dist/esm/types.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/types.d.ts",
+        "default": "./dist/commonjs/types.js"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/esm/from_json_file.d.ts",
+        "default": "./dist/esm/from_json_file.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/from_json_file.d.ts",
+        "default": "./dist/commonjs/from_json_file.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
   "imports": {
     "#src/*": "./src/*.js"
   },
@@ -106,6 +138,8 @@
     "selfLink": false,
     "exports": {
       ".": "./src/index.ts",
+      "./types": "./src/types.ts",
+      "./node": "./src/from_json_file.ts",
       "./package.json": "./package.json"
     }
   }
