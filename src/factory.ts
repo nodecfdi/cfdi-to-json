@@ -2,7 +2,7 @@ import CfdiToDataNode from '#src/cfdi_to_data_node';
 import UnboundedOccursPaths from '#src/unbounded_occurs_paths';
 
 export default class Factory {
-  private _unboundedOccursPaths: UnboundedOccursPaths;
+  private readonly _unboundedOccursPaths: UnboundedOccursPaths;
 
   public constructor(unboundedOccursPaths: UnboundedOccursPaths | null = null) {
     this._unboundedOccursPaths = unboundedOccursPaths ?? UnboundedOccursPaths.defaultSource();

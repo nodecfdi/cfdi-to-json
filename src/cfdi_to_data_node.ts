@@ -50,7 +50,7 @@ export default class CfdiToDataNode {
     }
 
     return new Node(
-      element.localName!,
+      `${element.localName}`,
       path,
       this.obtainAttributes(element),
       convertionChildren,
@@ -80,7 +80,7 @@ export default class CfdiToDataNode {
         break;
       }
 
-      parentsStack.push(current.localName!);
+      parentsStack.push(`${current.localName}`);
     }
 
     return `{${namespace}}/${[...parentsStack].reverse().join('/')}`;
