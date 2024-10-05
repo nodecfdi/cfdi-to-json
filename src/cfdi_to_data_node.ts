@@ -1,4 +1,12 @@
-import { isAttribute, isElement, isText, newDocumentContent } from '@nodecfdi/cfdi-core';
+import {
+  type Document,
+  type Element,
+  isAttribute,
+  isElement,
+  isText,
+  newDocumentContent,
+  type Node as XMLNode,
+} from '@nodecfdi/cfdi-core';
 import Children from '#src/nodes/children';
 import Node from '#src/nodes/node';
 import type UnboundedOccursPaths from '#src/unbounded_occurs_paths';
@@ -21,7 +29,6 @@ export default class CfdiToDataNode {
   }
 
   public convertXmlDocument(doc: Document): Node {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (doc.documentElement === null) {
       throw new Error('The DOMDocument does not have a root element');
     }
@@ -36,15 +43,14 @@ export default class CfdiToDataNode {
     // children to internal struct
     const convertionChildren = new Children(this._unboundedOccursPaths);
 
-    // eslint-disable-next-line unicorn/prefer-spread
-    for (const childElement of Array.from(element.childNodes)) {
+    for (const childElement of element.childNodes) {
       if (isElement(childElement)) {
         convertionChildren.append(this.convertElementToDataNode(childElement));
       }
     }
 
     return new Node(
-      element.localName,
+      element.localName!,
       path,
       this.obtainAttributes(element),
       convertionChildren,
@@ -54,8 +60,7 @@ export default class CfdiToDataNode {
 
   private obtainAttributes(element: Element): Record<string, string> {
     const attributes: Record<string, string> = {};
-    // eslint-disable-next-line unicorn/prefer-spread
-    for (const attribute of Array.from(element.attributes)) {
+    for (const attribute of element.attributes) {
       attributes[attribute.name] = attribute.value;
     }
 
@@ -66,7 +71,7 @@ export default class CfdiToDataNode {
     const namespace = element.namespaceURI ?? '';
     const parentsStack: string[] = [];
 
-    for (let current: ParentNode | null = element; current !== null; current = current.parentNode) {
+    for (let current: XMLNode | null = element; current !== null; current = current.parentNode) {
       if (!isElement(current) && !isAttribute(current)) {
         continue;
       }
@@ -75,7 +80,7 @@ export default class CfdiToDataNode {
         break;
       }
 
-      parentsStack.push(current.localName);
+      parentsStack.push(current.localName!);
     }
 
     return `{${namespace}}/${[...parentsStack].reverse().join('/')}`;
@@ -83,8 +88,7 @@ export default class CfdiToDataNode {
 
   private extractValue(element: Element): string {
     const values: string[] = [];
-    // eslint-disable-next-line unicorn/prefer-spread
-    for (const children of Array.from(element.childNodes)) {
+    for (const children of element.childNodes) {
       if (!isText(children)) {
         continue;
       }
