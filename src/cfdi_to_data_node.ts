@@ -68,7 +68,7 @@ export default class CfdiToDataNode {
   }
 
   private buildPathForElement(element: Element): string {
-    const namespace = element.namespaceURI ?? '';
+    const namespace = element.namespaceURI;
     const parentsStack: string[] = [];
 
     for (let current: XMLNode | null = element; current !== null; current = current.parentNode) {
