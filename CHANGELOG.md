@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v2.0.0](https://luffynando.github.com/nodecfdi/cfdi-to-json/compare/v1.2.3...v2.0.0)
+## [v2.0.1](https://luffynando.github.com/nodecfdi/cfdi-to-json/compare/v2.0.0...v2.0.1)
+
+### Commits
+
+- style: :rotating_light: apply usage of types dom provide by cfdi-core and small refactoring [`0ff580a`](https://luffynando.github.com/nodecfdi/cfdi-to-json/commit/0ff580a211d01c3cfa192f7fa206ebf138120951)
+- chore: :arrow_up: update dependencies [`033885d`](https://luffynando.github.com/nodecfdi/cfdi-to-json/commit/033885d15eac75d04a9ef80a369f1c03a617fa98)
+- style: :rotating_light: resolve all issued reported by sonarcloud [`08d8e1d`](https://luffynando.github.com/nodecfdi/cfdi-to-json/commit/08d8e1d622332b370d48073667ceea0335763cb2)
+
+## [v2.0.0](https://luffynando.github.com/nodecfdi/cfdi-to-json/compare/v1.2.3...v2.0.0) - 2024-09-12
 
 ### Commits
 
